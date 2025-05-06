@@ -20,7 +20,7 @@ We examined archived observations of 2,821 stars taken by the high-resolution ES
 \section{The Case for Optical SETI Searches}
 A majority of large scale SETI searches historically have concentrated on surveying radio wavelengths \citep{Gray_2017,OZMAII,LAMPTON1992189,Price_2020,PeterMa,Wright_2018}. One major advantage of this is that given their long wavelengths, radio waves can pass largely unobstructed through planetary atmospheres and the interstellar medium \citep{COCCONI_MORRISON_1959}. However, optical lasers provide a compelling alternative to radio, with many distinct advantages over them \citep{caseforopticalseti}. Extraterrestrial lasers could be used for communications, for propulsion, power transmission, or planetary defense.  
 
-As a communications tool, lasers can transmit data at substantially higher rates than radio \citep{Tellis_2017,Kingsley}. They are also less affected by natural and anthropogenic interference than radio, which contends with many sources of RFI \citep{RFIpaper}, as well as naturally ocurring masers \citep{méndez2024arecibowowiastrophysical}. Because laser light is monochromatic, a laser could outshine its parent star within its particular wavelength band, showing up in the spectra as an unnaturally narrow emission line \citep{TOWNES_SCHWARTZ_1961,STANTON201992}. This has motivated numerous archival and dedicated searches for signatures of short duration pulsed as well as continuous lasers \citep{Tellis_2017,Lipman_2019,Howard_2004,Shelley_Wright,Zuckerman_2023,Reines_2002,Maire_2019,Marcy_2021}.
+As a communications tool, lasers can transmit data at substantially higher rates than radio \citep{Tellis_2017,Kingsley}. They are also less affected by natural and anthropogenic interference than radio, which contends with many sources of RFI \citep{RFIpaper}, as well as naturally ocurring masers \citep{mendez2024arecibowowiastrophysical}. Because laser light is monochromatic, a laser could outshine its parent star within its particular wavelength band, showing up in the spectra as an unnaturally narrow emission line \citep{TOWNES_SCHWARTZ_1961,STANTON201992}. This has motivated numerous archival and dedicated searches for signatures of short duration pulsed as well as continuous lasers \citep{Tellis_2017,Lipman_2019,Howard_2004,Shelley_Wright,Zuckerman_2023,Reines_2002,Maire_2019,Marcy_2021}.
 
 A further motivation to search for lasers is that they have multiple potential applications beyond communication. Light sail propulsion systems are another potential source of detectable laser energy. \cite{Guillochon_2015} proposed to search for microwave light sail beams of the type proposed for interstellar mission concepts such as Starshot \citep{STARSHOT}. However, one could search for visible-light laser propulsion systems as well. Extraterrestrial lasers might also be used to transport power from one source to another within a solar-system spanning civilization, or used for planetary defense \citep{Bible_Johansson_Hughes_Lubin_2013}. Thus, lasers powerful enough to detect from earth-based telescopes may occasionally be directed toward us, either as a deliberate attempt to communicate or incidentally. In this work, we aim to identify any past detections of such events by searching archival spectroscopic data.
 
@@ -126,7 +126,7 @@ We manually classified a detection as a ``likely cosmic ray'' if it had any of t
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{HARPS.2010-09-14T01_44_18.810cosmicRAY.png}
+    \includegraphics[width=\textwidth]{HARPS_2010-09-14T01_44_18_810cosmicRAY.png}
     \caption{An example of a cosmic ray (Observation Date/Time: 2010-09-14, 01:44:18.810). Top panel: reduced spectrum (the red dashed line indicates the spike detected by the automated algorithm).  Bottom panel: subsection of the corresponding CCD image for this wavelength range. The stellar spectrum is the pale blue band. At the location of the detected spike, the CCD image shows a long track which spills over outside the band of starlight and into surrounding CCD pixels.}
     \label{fig:Cosmic_ray_example}
 \end{figure}
@@ -137,7 +137,7 @@ We manually classified a detection as a ``likely cosmic ray'' if it had any of t
  
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{HARPS.2013-08-18T05_02_20.353bleedthrough.png}
+    \includegraphics[width=\textwidth]{HARPS_2013-08-18T05_02_20_353bleedthrough.png}
     \caption{An example of calibration lamp bleed-through (Observation Date/Time: 2013-08-18, 05:02:20.353). Top panel: reduced spectrum, bottom panel: raw CCD image. The upper band of bright spots in the CCD image is from the calibration lamp; the lower band is starlight.  Charge from an oversaturated emission line in the calibration lamp has bled across to contaminate the stellar spectrum.}
     \label{fig:bleedthrough}
 \end{figure}
@@ -317,8 +317,8 @@ Sign errors are always possible with Doppler calculations.  The analysis above u
 
 A particularly compelling candidate is shown in \ref{fig:seti_candidate_GJ4291}. Although there are three nearby airglow lines, in the \cite{faint_airglow_database} database, none of them match the candidate's wavelength in the observatory's reference frame. Therefore, it remains unexplained and warrants further study. 
 
-\begin{figure}
-    \centering  \includegraphics[width=\textwidth]{3_ADP.2014-10-02T10_02_27.423_zoom (2).png}
+\begin{figure}  
+    \centering  \includegraphics[width=\textwidth]{3_ADP_2014-10-02T10_02_27_423_zoom.png}
     \caption{Star: GJ4291, Spectral Type: K3V, Observation Date/Time: 2005-07-20, 04:08:04.468.  Top panel: reduced spectrum.  Bottom panel: subsection of the corresponding CCD image for this wavelength range. The spike is exceptionally bright, on order of $~10$ times the stellar continuum. It does not meet our criteria for cosmic rays or calibration lamp bleed-through (Sections \ref{s:cosmic} and \ref{s:bleedthrough}), and does not match the wavelength of any of the airglow lines in \cite{faint_airglow_database}.}
     \label{fig:seti_candidate_GJ4291}
 \end{figure}
@@ -363,7 +363,6 @@ To confirm that this was a terrestrial signal, we Doppler-shifted each spectrum 
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{rawccdmultiplestars2.png}
     \includegraphics[width=\textwidth]{rawccdmultiplestars2.pdf}    \caption{Raw CCD images of spectra from HD127423, HD107181, HD128356, HD126535, HD143120, HD143361 and HD144899 at 5733 \AA. A bright spot (denoted in each with a red line) is visible in all of them, in what appears to be the same location relative to the calibration lamp. Notably, there is also no visible signature of bleedthrough.}
     \label{fig:rawccdrecurrences}
 \end{figure}
