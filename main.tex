@@ -1,4 +1,5 @@
-\documentclass[linenumbers]{aastex631}
+\documentclass[twocolumn]{aastex701}
+%%\documentclass[linenumbers]{aastex701}
 %%\usepackage{graphicx} % Required for inserting images
 \usepackage{url}
 
@@ -6,12 +7,16 @@
 
 \title{The 2821 Star Southern Hemisphere Optical SETI Survey}
 \author[0009-0008-7048-916X]{Benjamin Fields} %https://orcid.org/0009-0008-7048-916X
+\affiliation{Wheaton College, Norton MA USA}
+\email{bnfields72@gmail.com}
+
 \author[0000-0002-6755-2710]{Jason C. Goodman}
 \affiliation{Wheaton College, Norton MA USA}
+\email{goodman_jason@wheatoncollege.edu}
 
 \correspondingauthor{Benjamin Fields}
 \email{bnfields72@gmail.com}
-\date{July 2024}
+\date{July 2025}
 
 \begin{abstract}
 We examined archived observations of 2,821 stars taken by the high-resolution ESO HARPS spectrograph to search for potential narrow-band laser emissions from extraterrestrial sources. From one observation of each star, our search algorithm identified a total of 285 spectral peaks with line widths slightly larger than the instrument's point-spread function.  After eliminating  false positives (including cosmic rays, instrumental artifacts, and terrestrial airglow lines), we identified 8 sources worthy of follow-up observations. We then analyzed all 1,835 additional observations of these follow-up targets, looking for recurring signals. We found 1 additional unexplained candidate in this followup search, but no candidate spikes which repeated at the same wavelength as one of the initial candidates at a later time.  Further analysis identified one candidate as a likely faint airglow line. Additionally, 4 of the candidates appear to be stationary in the telescope's reference frame--indicating a currently unknown terrestrial source. Although definitively not extraterrestrial in origin, these unknown terrestrial sources may represent novel atmospheric phenomena. This leaves 3 candidates which currently defy the prosaic explanations examined thus far, show no indication of a terrestrial origin and therefore warrant further investigation. Two of these three candidates originate from M-Type stars and one of them originates from an oscillating red giant--so an important emphasis in future follow-up work will entail disentangling natural astrophysical stellar anomalies from potential SETI sources.
@@ -35,7 +40,7 @@ Our search list comes from  \cite{trifonov_2020}, who provided a database of ste
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{HARPS Database Stellar Distances and Temperatures (1).pdf}
+    \includegraphics[width=\columnwidth]{HARPS Database Stellar Distances and Temperatures (1).pdf}
     \caption{Temperatures (x-axis, Kelvin) and distances (y-axis, parsecs) of the stellar population targeted by this study. }
     \label{fig:starlist}
 \end{figure}
@@ -64,7 +69,7 @@ To visualize the algorithm, we present an example candidate signal from  Proxima
 
 \begin{figure}
     \centering
-\includegraphics{proxima_algorithm_example4.pdf}
+\includegraphics[width=\columnwidth]{proxima_algorithm_example4.pdf}
     \caption{A representative  candidate signal from Proxima Centauri (later found to be part of a family of natural stellar emission lines). (HARPS OBSERVATION ID: \path{ADP.2014-09-25T15_36_33.623.fits}). Blue: spectral data, orange: 100-point running median, green: noise threshold (median + 3.5 x local running standard deviation).}
     \label{fig:algorithm-example}
 \end{figure}
@@ -77,12 +82,12 @@ Once the automated search algorithm has identified targets, a combination of aut
 \label{s:Airglow}
 Atomic transitions in Earth's atmosphere (airglow) are a major source of false positives in our data.  Since these emission lines come from heavy atoms in a cool low-pressure atmosphere, their spectral width is near the instrumental PSF. Therefore, they are difficult to distinguish from lasers using linewidth alone. However, night sky airglow emissions only occur at specific wavelengths. Our initial search algorithm ignores any spikes detected in a 1-angstrom-wide window surrounding several of the most prominent airglow line wavelengths \citep{Luger_2017}. These `prohibited wavelengths' are shown in Table \ref{table:AirglowWavelengths}. For a visual example of an airglow line, see Figure \ref{fig:airglowexample}.
 
-\begin{figure}
+\begin{figure*}
     \centering
     \includegraphics[width=\textwidth]{airglowexample.png}
     \caption{An example of a commonly recurring airglow line at 5577 \AA (Observation Date/Time: 2013-03-31, 08:25:02.332). Top panel: reduced spectrum (the red dashed line indicates the spike detected by the automated algorithm).  Bottom panel: subsection of the corresponding CCD image for this wavelength range. The stellar spectrum is the pale blue band. At the location of the detected spike, the CCD image shows a visible corresponding bright spot.}
     \label{fig:airglowexample}
-\end{figure}
+\end{figure*}
 
 \begin{table}
 \begin{center}
@@ -124,23 +129,23 @@ We identified likely cosmic rays by visual inspection using the following criter
 \end{enumerate}
 We manually classified a detection as a ``likely cosmic ray'' if it had any of these features.
 
-\begin{figure}
+\begin{figure*}
     \centering
     \includegraphics[width=\textwidth]{HARPS.2010-09-14T01_44_18.810cosmicRAY.png}
     \caption{An example of a cosmic ray (Observation Date/Time: 2010-09-14, 01:44:18.810). Top panel: reduced spectrum (the red dashed line indicates the spike detected by the automated algorithm).  Bottom panel: subsection of the corresponding CCD image for this wavelength range. The stellar spectrum is the pale blue band. At the location of the detected spike, the CCD image shows a long track which spills over outside the band of starlight and into surrounding CCD pixels.}
     \label{fig:Cosmic_ray_example}
-\end{figure}
+\end{figure*}
 
 \subsubsection{Calibration Lamp Bleed-through}
 \label{s:bleedthrough}
  The HARPS instrument contains a calibration lamp, an artificial reference spectrum imaged in the same CCD frame as the stellar spectrum \citep{HARPS_specs}. In some observations, the calibration lamp was left on during the observation, either deliberately or by mistake.  This led to another class of false positives, ``calibration lamp bleed-through'' (see Figure \ref{fig:bleedthrough}).
  
-\begin{figure}
+\begin{figure*}
     \centering
-    \includegraphics[width=\textwidth]{HARPS.2013-08-18T05_02_20.353bleedthrough.png}
+    \includegraphics[width=\textwidth]{HARPS_2013-08-18T05_02_20_353bleed.png}
     \caption{An example of calibration lamp bleed-through (Observation Date/Time: 2013-08-18, 05:02:20.353). Top panel: reduced spectrum, bottom panel: raw CCD image. The upper band of bright spots in the CCD image is from the calibration lamp; the lower band is starlight.  Charge from an oversaturated emission line in the calibration lamp has bled across to contaminate the stellar spectrum.}
     \label{fig:bleedthrough}
-\end{figure}
+\end{figure*}
 
 In the example shown in the figure, the calibration lamp's bright spectral peaks (seen in the upper part of the CCD image) ``bleed through'' vertically, creating a spurious spike in the stellar spectrum below.  Since the width of these spikes is close to the instrument's PSF, this category of false positive cannot be identified automatically in processed spectra and was identified by manual inspection of the CCD images.
 
@@ -152,13 +157,13 @@ Secondly, natural stellar emission lines rarely show up in isolation. Most stars
 
 For an example of a spectra which matches our criteria for natural stellar emission lines, see Figure \ref{fig:eruptivevariablestar}  from eruptive variable star GJ234.
 
-\begin{figure}
+\begin{figure*}
     \centering
     \includegraphics[width=\textwidth]{eruptive_variable_star_reduced_spectrum-1.png}
     \includegraphics[width=\textwidth]{eruptivevariablestarbroadpeak.png}
     \caption{Top panel: Reduced spectra of an eruptive variable star, GJ234. Numerous spikes are visible, as is typical of natural stellar emission-line activity from eruptive stars like this one.  Bottom panel: Zoom-in on one of approximately 10 spikes observed from this star. These emission features are much broader than the HARPS instrument's point spread function, as is typical of natural stellar emission lines. (HARPS OBSERVATION ID: \path{ADP.2014-10-06T10:04:35.637.fits})}.
     \label{fig:eruptivevariablestar}
-\end{figure}
+\end{figure*}
 
 Manual inspection of CCD frames let us categorize 141 of our candidates as cosmic rays and 10 as calibration lamp bleedthrough. Automated filters eliminated the most prominent/recurrent airglow lines a-priori, and 89 candidates appeared in clusters indicative of stellar emission lines. This left us with 41 still unexplained.
 
@@ -190,9 +195,10 @@ After analyzing one spectrum each from our target list of stars, our search algo
 
 \begin{table}
 \begin{center}
-\begin{tabular}{|c|c|} 
+\begin{tabular}{|l|l|} 
  \hline
- Category & Number of Candidates \\ 
+ & Number of \\
+ Category & Candidates \\ 
  \hline
  Cosmic Rays & 142 \\ 
  Natural Emission Line Clusters & 89 \\ 
@@ -213,9 +219,10 @@ While laser transmissions could be ephemeral, signals that recur consistently wo
 
 \begin{table}
 \begin{center}
-\begin{tabular}{|c|c|} 
+\begin{tabular}{|l|l|} 
  \hline
- Category & Number of Candidates \\ 
+ & Number of \\
+ Category & Candidates \\ 
  \hline
  Cosmic Rays & 29 \\ 
  Natural Emission Line Clusters & 18 \\ 
@@ -238,16 +245,18 @@ In total, 9 candidates passed through all aforementioned filters, three of which
 \begin{center}
 \begin{tabular}{|c|c|c|c|} 
  \hline
- Star & Spectral Type & Observation Time & Wavelength \\ 
- HIP59341 & G5V & 2013-06-01, 03:04:25.906 & 4042.84 \AA \\
- CD-312415 & RG & 2018-02-11, 01:10:40.597 & 3931.24 \AA \\ 
- GJ317 & M3.5V & 2018-04-10, 03:25:08.275 &  4662.77 \AA \\ 
- HD127423 & G0V & 2013-06-01, 04:16:19.375 &  5732.93 \AA \\
- HD96673 & K3V & 2006-01-28, 07:17:55.086 & 3931.31  \AA \\
- HIP87607  & M0V & 2012-10-22, 23:39:09.238 & 3784.09  \AA \\
- HIP87607  & M0V & 2012-10-22, 23:39:09.238 & 4042.74 \AA \\
- HIP87607  & M0V & 2013-04-30, 09:50:45.212 & 5454.02 \AA \\
- GJ4291 & K3V & 2005-07-20, 04:08:04.468 & 3841.74 \AA \\
+& Spectral & & Wavelength\\
+ Star & Type & Observation Time & \AA \\ 
+\hline
+ HIP59341 & G5V & 2013-06-01, 03:04:25.906 & 4042.84  \\
+ CD-312415 & RG & 2018-02-11, 01:10:40.597 & 3931.24  \\ 
+ GJ317 & M3.5V & 2018-04-10, 03:25:08.275 &  4662.77  \\ 
+ HD127423 & G0V & 2013-06-01, 04:16:19.375 &  5732.93  \\
+ HD96673 & K3V & 2006-01-28, 07:17:55.086 & 3931.31  \\
+ HIP87607  & M0V & 2012-10-22, 23:39:09.238 & 3784.09  \\
+ HIP87607  & M0V & 2012-10-22, 23:39:09.238 & 4042.74 \\
+ HIP87607  & M0V & 2013-04-30, 09:50:45.212 & 5454.02 \\
+ GJ4291 & K3V & 2005-07-20, 04:08:04.468 & 3841.74  \\
  \hline
  \end{tabular}
 \end{center}
@@ -257,19 +266,14 @@ In total, 9 candidates passed through all aforementioned filters, three of which
 
 One of the candidates from HIP87607 is pictured in \ref{fig:seti_candidate_HIP87607}. 
 
-\begin{figure}
+\begin{figure*}
     \centering  \includegraphics[width=\textwidth]{Mtype1.png}
     \caption{Star: HIP87607, Spectral Type: M0V, (Observation Date/Time: 2013-04-30, 09:50:45.212) Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.  This figure shows one of three unexplained candidates from observations of HIP87607.}
     \label{fig:seti_candidate_HIP87607}
-\end{figure}
+\end{figure*}
 
 Over half of these candidates originate from M-dwarf stars. These lines occurred in isolation, rather than as one of a ``forest'' of broader natural lines. However, as discussed in Section \ref{s:stellaremission}, these stars can sometimes produce relatively narrow emission lines due to relatively low temperatures, high metallicity, and frequent flaring activity \citep{Marcy_2021}. Therefore, though they are unexplained, a natural origin cannot be definitively ruled out. Conversely, the candidates from G and K type stars stood out as the most compelling, since such stars are generally not known to produce many natural emission lines \citep{stellar_emission_linesJ}. However, later analysis revealed that all of our G and K-type candidates appear to be from unknown terrestrial sources which are stationary in the telescope's reference frame (see \ref{s:hd127423}).
 
-%\begin{figure}
-    %\centering  \includegraphics[width=\textwidth]{G5Vtype.png}
-    %\caption{Star: HIP59341, Spectral Type: G5V Observation Date/Time: 2013-06-02, 10:06:38.  Top panel: reduced spectrum.  Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
-    %\label{fig:seti_candidate_HIP59341}
-%\end{figure}
 
 \subsection{Airglow Reanalysis}
 \label{s:airglow_reanalysis}
@@ -280,13 +284,13 @@ Results are shown in Figure \ref{fig:airglow_reanalysis}. The HD96673 candidate 
 
 Sign errors are always possible with Doppler calculations.  The analysis above uses the same shifting method as was used to create Figure \ref{fig:stellarframespectra} below.  We confirmed that flipping the sign of the barycentric earth radial velocity did not give better concordance between candidate spikes and airglow lines. We also see in Table \ref{table:airglow_difference} that the barycentric correction velocity does not match the predicted velocity that would be necessary to account for the difference between the observed wavelength and the nearest airglow wavelengths, further arguing against airglow lines as an explanation.
 
-\begin{figure}
+\begin{figure*}
     \centering  \includegraphics[width=\textwidth]{airglow_reanalysis.pdf}
     \caption{Comparison of candidate spikes from Table \ref{table:final_candidates} against a detailed airglow line database.  Blue lines: reduced HARPS spectra, doppler-shifted into terrestrial reference frame.  Red dotted lines: candidate wavelength identified by our spike identification algorithm. Green boxes: central wavelength (line) and full width half maximum (box) for airglow lines listed in  \cite{faint_airglow_database}.}
     \label{fig:airglow_reanalysis}
-\end{figure}
+\end{figure*}
 
-\begin{table}
+\begin{table*}
 \begin{center}
     \begin{tabular}{|c|c|c|c|c|c|c|}
     \hline 
@@ -314,26 +318,19 @@ Sign errors are always possible with Doppler calculations.  The analysis above u
 \caption{Comparison of candidate spectral signatures with nearby terrestrial airglow lines.  $v_{\mbox{bary}}$:  Relative velocity between solar barycenter and observatory, in direction of star.  $\lambda_{\mbox{bary}}$: wavelength of candidate spikes, in barycentric frame, as reported by HARPS spectral files.  $\lambda_{\mbox{obs}}$: wavelength of candidate spikes in observatory frame, calculated using  $v_{\mbox{bary}}$. 
  $\lambda_{\mbox{airglow}}$: wavelength of nearby airglow line. $\Delta v$: Velocity of airglow source relative to observatory that would be needed to explain candidate as an airglow line.  The large values for $\Delta v$ and inconsistency with the barycentric correction velocity indicate that these candidates cannot be explained by airglow.}
 \label{table:airglow_difference}
-\end{table}
+\end{table*}
 
-%A particularly compelling candidate is shown in \ref{fig:seti_candidate_GJ4291}. Although there are three nearby airglow lines, in the \cite{faint_airglow_database} database, none of them match the candidate's wavelength in the observatory's reference frame. Therefore, it remains unexplained and warrants further study. 
-
-%\begin{figure}
-    %\centering  \includegraphics[width=\textwidth]{3_ADP.2014-10-02T10_02_27.423_zoom (2).png}
-    %\caption{Star: GJ4291, Spectral Type: K3V, Observation Date/Time: 2005-07-20, 04:08:04.468.  Top panel: reduced spectrum.  Bottom panel: subsection of the corresponding CCD image for this wavelength range. The spike is exceptionally bright, on order of $~10$ times the stellar continuum. It does not meet our criteria for cosmic rays or calibration lamp bleed-through (Sections \ref{s:cosmic} and \ref{s:bleedthrough}), and does not match the wavelength of any of the airglow lines in \cite{faint_airglow_database}.}
-    %\label{fig:seti_candidate_GJ4291}
-%\end{figure}
 
 \subsubsection{Investigating the HD127423 Candidate} 
 \label{s:hd127423}
 
 The HD127423 candidate seemed especially interesting.  It appeared to originate from a G-Type star, had no nearby airglow lines, had a gaussian lineshape close to the instrument's FWHM, and, as seen in Figure \ref{fig:seti_candidate_HD127423}, the spectral energy is entirely within the CCD image of the spectrometer's entry slit, suggesting that this is not a cosmic ray or calibration lamp bleed-through.  We subjected it to additional detailed analysis.
 
-\begin{figure}
+\begin{figure*}
     \centering  \includegraphics[width=\textwidth]{HD127423.png}
     \caption{Star: HD127423, Spectral Type:G0V, Observation Date/Time: 2013-06-01, 04:16:19.375. Top panel: reduced spectrum.  Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
     \label{fig:seti_candidate_HD127423}
-\end{figure}
+\end{figure*}
 
 The calibration lamp was on during the observation, and bleedthrough is observed at some wavelengths, but not at the candidate wavelength of 5732.93 \AA.
 
@@ -355,27 +352,22 @@ The spike in question only appears once in all 8 observations of HD127423 availa
 
 To confirm that this was a terrestrial signal, we Doppler-shifted each spectrum into its respective stellar reference frame (Figure \ref{fig:stellarframespectra}).  We observed that absorption features common to all these stars align, but the spike does not. Thus, the signal is not in the stars' reference frames.  Second, we Doppler-shifted each spectrum into the {\em terrestrial} observatory's reference frame using the barycentric radial velocity listed in the using the \texttt{HIERARCH ESO DRS BERV} FITS header, and confirmed that the stars' absorption features do not line up, but the mysterious spike does.
 
-\begin{figure}
+\begin{figure*}
     \centering
     \includegraphics[width=\textwidth]{HD127423Dopplershift.pdf}
     \caption{Reduced spectra for all stars observed by HARPS within +/- 1 hour of the HD127423 candidate at 2013-06-01, 04:16:19.375 (HD127423, HD107181, HD128356, HD126535, HD143120, HD143361 and HD144899).  Each observation showsa spike around 5733 \AA. Top panel: all 7 spectra in the default reference frame for HARPS pipeline (solar system barycenter). Middle panel: all 7 spectra, doppler shifted to the reference frame of each respective star. Bottom panel: all 7 spectra, Doppler shifted into the Earth's reference frame.  The alignment of the 5733{\AA} spikes in the terrestrial reference frame indicates that this is a terrestrial signal, not a stellar feature.}
     \label{fig:stellarframespectra}
-\end{figure}
+\end{figure*}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{rawccdmultiplestars2.pdf}    \caption{Raw CCD images of spectra from HD127423, HD107181, HD128356, HD126535, HD143120, HD143361 and HD144899 at 5733 \AA. A bright spot (denoted in each with a red line) is visible in all of them, in what appears to be the same location relative to the calibration lamp. Notably, there is also no visible signature of bleedthrough.}
-    \label{fig:rawccdrecurrences}
-\end{figure}
-
- We confirmed that the spike was in the observatory's reference frame by looking at the raw CCD images, which showed a common spike at the same CCD pixels in all of them.  There was no evidence of CCD "bleed-through" at this location. Additionally, Figure \ref{fig:rawccdrecurrences} shows that in the raw CCD images, the common absorption lines from the stars are shifted by an amount that we have confirmed matches their relative velocity, while the candidate spike at 5733 \AA does not doppler shift at all relative to the calibration source. Thus, our analysis suggests that this is an as yet unknown terrestrial source.
+ We confirmed that the spike was in the observatory's reference frame by looking at the raw CCD images, which showed a common spike at the same CCD pixels in all of them.  There was no evidence of CCD "bleed-through" at this location, and these features appear at the same pixel position on the CCD images, confirming that there is no doppler shift at all relative to the calibration source. Thus, our analysis suggests that this is an as yet unknown terrestrial source.
 
 The two-hour time window during which the source persisted argues against satellites in low earth orbit, since at such velocities the satellite would not stay in the same location long enough to continuously beam down a laser for that duration. However, we can also rule out a transmitter at interstellar distances. We were therefore left with a signature which is unexplained, yet originating from a local source. A logical next step in our investigation was to see if any of the other candidates were also terrestrial by applying the same technique. After examining observations taken within a two hour window on the same night as each of our candidates, we found 3 more candidates which also appear to be stationary in the Earth's reference frame and therefore terrestrial in origin.  Although no longer viable SETI candidates, since they do not match known airglow lines they may represent novel atmospheric phenomena potentially of interest to meteorologists. This now leaves a total of four candidates which are unknown terrestrial sources, and three candidates which represent unknown extraterrestrial sources (see \ref{tab:terrestrial_or_extraterrestrial}). Although the HD96673 candidate is conspicuously near the wavelength of a faint airglow line (see \ref{s:airglow_reanalysis}), it only appeared in one of the ten observations taken that night.  
 
 \begin{table}
     \centering
-    \begin{tabular}{c|c|c}
-       Observation Date/Time  & Star & Terrestrial Source? \\
+    \begin{tabular}{|c|c|c|}
+    \hline
+        Observation Date/Time  & Star & Terrestrial Source? \\
     \hline
        2013-06-01T03:04:25.906 & HIP59341 & YES \\
        2018-02-11T01:10:40.597 & CD-312415 & NO \\
@@ -484,7 +476,7 @@ Both authors declare that they have no conflicts of interest.
 \section{Unexplained Candidates Rejected by the Curve Fitting Algorithm}
 \label{s:rejects}
 
-\begin{table}[h]
+\begin{table}[h!]
 \begin{center}
 \begin{tabular}{|c|c|c|c|} 
  \hline
@@ -530,7 +522,7 @@ Both authors declare that they have no conflicts of interest.
 \caption{Candidate spikes with line widths narrower than the the predicted FWHM of the instrument.  As discussed in Section \ref{s:curvefit}, this test indicates that these candidates are probably not ``extra-instrumental'', but we include them here for completeness.}
 \end{table}
 
-\bibliographystyle{aasjournal}
+\bibliographystyle{aasjournalv7}
 \bibliography{references.bib}
 
 \end{document}
