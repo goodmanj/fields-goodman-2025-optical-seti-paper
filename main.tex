@@ -126,7 +126,7 @@ We manually classified a detection as a ``likely cosmic ray'' if it had any of t
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{HARPS_2010-09-14T01_44_18_810cosmicRAY.png}
+    \includegraphics[width=\textwidth]{HARPS.2010-09-14T01_44_18.810cosmicRAY.png}
     \caption{An example of a cosmic ray (Observation Date/Time: 2010-09-14, 01:44:18.810). Top panel: reduced spectrum (the red dashed line indicates the spike detected by the automated algorithm).  Bottom panel: subsection of the corresponding CCD image for this wavelength range. The stellar spectrum is the pale blue band. At the location of the detected spike, the CCD image shows a long track which spills over outside the band of starlight and into surrounding CCD pixels.}
     \label{fig:Cosmic_ray_example}
 \end{figure}
@@ -137,7 +137,7 @@ We manually classified a detection as a ``likely cosmic ray'' if it had any of t
  
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{HARPS_2013-08-18T05_02_20_353bleedthrough.png}
+    \includegraphics[width=\textwidth]{HARPS.2013-08-18T05_02_20.353bleedthrough.png}
     \caption{An example of calibration lamp bleed-through (Observation Date/Time: 2013-08-18, 05:02:20.353). Top panel: reduced spectrum, bottom panel: raw CCD image. The upper band of bright spots in the CCD image is from the calibration lamp; the lower band is starlight.  Charge from an oversaturated emission line in the calibration lamp has bled across to contaminate the stellar spectrum.}
     \label{fig:bleedthrough}
 \end{figure}
@@ -240,7 +240,7 @@ In total, 9 candidates passed through all aforementioned filters, three of which
  \hline
  Star & Spectral Type & Observation Time & Wavelength \\ 
  HIP59341 & G5V & 2013-06-01, 03:04:25.906 & 4042.84 \AA \\
- CD-312415 & N/A & 2018-02-11, 01:10:40.597 & 3931.24 \AA \\ 
+ CD-312415 & RG & 2018-02-11, 01:10:40.597 & 3931.24 \AA \\ 
  GJ317 & M3.5V & 2018-04-10, 03:25:08.275 &  4662.77 \AA \\ 
  HD127423 & G0V & 2013-06-01, 04:16:19.375 &  5732.93 \AA \\
  HD96673 & K3V & 2006-01-28, 07:17:55.086 & 3931.31  \AA \\
@@ -358,7 +358,7 @@ To confirm that this was a terrestrial signal, we Doppler-shifted each spectrum 
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{HD127423Dopplershift.pdf}
-    \caption{Reduced spectra from HD127423, HD107181, HD128356, HD126535, HD143120, HD143361 and HD144899, each with a spike around 5733 \AA. Top panel: all 7 spectra in the default referenjce frame for HARPS pipeline (solar system barycenter). Middle panel: all 7 spectra, doppler shifted to the reference frame of each respective star. Bottom panel: all 7 spectra, Doppler shifted into the Earth's reference frame.  The alignment of the 5733{\AA} spikes in the terrestrial reference frame indicates that this is a terrestrial signal, not a stellar feature.}
+    \caption{Reduced spectra for all stars observed by HARPS within +/- 1 hour of the HD127423 candidate at 2013-06-01, 04:16:19.375 (HD127423, HD107181, HD128356, HD126535, HD143120, HD143361 and HD144899).  Each observation showsa spike around 5733 \AA. Top panel: all 7 spectra in the default reference frame for HARPS pipeline (solar system barycenter). Middle panel: all 7 spectra, doppler shifted to the reference frame of each respective star. Bottom panel: all 7 spectra, Doppler shifted into the Earth's reference frame.  The alignment of the 5733{\AA} spikes in the terrestrial reference frame indicates that this is a terrestrial signal, not a stellar feature.}
     \label{fig:stellarframespectra}
 \end{figure}
 
@@ -372,7 +372,7 @@ To confirm that this was a terrestrial signal, we Doppler-shifted each spectrum 
 
 The two-hour time window during which the source persisted argues against satellites in low earth orbit, since at such velocities the satellite would not stay in the same location long enough to continuously beam down a laser for that duration. However, we can also rule out a transmitter at interstellar distances. We were therefore left with a signature which is unexplained, yet originating from a local source. A logical next step in our investigation was to see if any of the other candidates were also terrestrial by applying the same technique. After examining observations taken within a two hour window on the same night as each of our candidates, we found 3 more candidates which also appear to be stationary in the Earth's reference frame and therefore terrestrial in origin.  Although no longer viable SETI candidates, since they do not match known airglow lines they may represent novel atmospheric phenomena potentially of interest to meteorologists. This now leaves a total of four candidates which are unknown terrestrial sources, and three candidates which represent unknown extraterrestrial sources (see \ref{tab:terrestrial_or_extraterrestrial}). Although the HD96673 candidate is conspicuously near the wavelength of a faint airglow line (see \ref{s:airglow_reanalysis}), it only appeared in one of the ten observations taken that night.  
 
-\begin{table}[]
+\begin{table}
     \centering
     \begin{tabular}{c|c|c}
        Observation Date/Time  & Star & Terrestrial Source? \\
@@ -386,8 +386,8 @@ The two-hour time window during which the source persisted argues against satell
        2005-07-20T04:08:04.468 & GJ4291 & YES \\
     \hline
     \end{tabular}
-    \caption{List of }
-    \label{tab:terrestrial_or_extraterrestrial?}
+    \caption{Each candidate was subjected to a test where we checked other observations within a two hour window to see if there were recurrences of the same emission line on separate parts of the sky, and if so test whether or not these emissions are stationary in the terrrestrial frame. The verdicts from that test for each candidate are listed.}
+    \label{tab:terrestrial_or_extraterrestrial}
 \end{table}
 
 \subsection{Estimating the Power Requirements for a Transmitting Laser}
@@ -449,7 +449,7 @@ Thus, using the HD127423 candidate as a benchmark, we find that this survey has 
 
 \section{Summary and Conclusions}
 We analyzed single archived reduced spectra from 2821 stellar targets taken by the ESO’s HARPS spectroscope to search for potential signatures of lasers from extraterrestrial civilizations. We identified false positives (Section \ref{s:falsepositive}), including cosmic rays (Section \ref{s:cosmic}), bleed through from the Th-Ar calibration lamp (Section \ref{s:bleedthrough}), night sky airglow lines (Section \ref{s:Airglow}), and large clusters of emission lines which are likely the product of natural stellar activity (Section \ref{s:stellaremission}). Of the 2821 stellar spectra we analyzed, we identified 285 candidates with at least one narrow spectral emission feature.  41 of these did not fit any of the above false positive categories. We filtered this dataset further on the basis of linewidth (Section \ref{s:curvefit}) and analyzed all other HARPS observations of these stars (Section \ref{s:repeat}). We were left with a total of 9 compelling candidates (Section \ref{s:unexplained}). After further investigation, we identified one that could be a faint airglow line (Section \ref{s:airglow_reanalysis}). We then analyzed observations from other stars taken on the same night as each candidate within a two hour window. After shifting these additional spectra into the terrestrial reference frame, we found that four of the surviving candidates originate from unknown sources which are stationary in the telescope's reference frame (See 
-\ref{tab:terrestrial_or_extraterrestrial?} in \ref{s:hd127423}). Although no longer viable SETI candidates and definitely terrestrial in origin, the source remains unknown. The two hour window during which they appeared argues against a laser from a classified satellite in Low Earth Orbit, though classified satellites in Geostationary cannot yet be ruled out. They also might represent novel atmospheric phenomena and could be of interest to meteorologists. This leaves three candidates which passed through all of our filters for prosaic explanations and show no indication of being terrestrial in origin, and therefore warrant further investigation as SETI candidates.
+\ref{tab:terrestrial_or_extraterrestrial} in \ref{s:hd127423}). Although no longer viable SETI candidates and definitely terrestrial in origin, the source remains unknown. The two hour window during which they appeared argues against a laser from a classified satellite in Low Earth Orbit, though classified satellites in Geostationary cannot yet be ruled out. They also might represent novel atmospheric phenomena and could be of interest to meteorologists. This leaves three candidates which passed through all of our filters for prosaic explanations and show no indication of being terrestrial in origin, and therefore warrant further investigation as SETI candidates.
 
 Of our surviving candidates, two of them (GJ317 and HIP87607) originate from M-type stars, and one of them (CD-312415) originates from an oscillating Red Giant \citep{CD-312415_RED_GIANT}. Although these three candidates do not match our criteria for stellar emission lines, detection of candidate laser signals is more ambiguous in red dwarfs due to their relatively cool temperatures, high metallicity, and coronal activity, which leads to flaring and prominent narrow emission lines \citep{Marcy_2021}. Similarly, an oscillating red giant star also indicates stellar activity at relatively cool temperatures, which makes it a much more ambiguous candidate. Nonetheless, they still warrant further followup. 
 
@@ -484,7 +484,7 @@ Both authors declare that they have no conflicts of interest.
 \section{Unexplained Candidates Rejected by the Curve Fitting Algorithm}
 \label{s:rejects}
 
-\begin{table}
+\begin{table}[h]
 \begin{center}
 \begin{tabular}{|c|c|c|c|} 
  \hline
