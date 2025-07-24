@@ -19,7 +19,7 @@
 \date{July 2025}
 
 \begin{abstract}
-We examined archived observations of 2,821 stars taken by the high-resolution ESO HARPS spectrograph to search for potential narrow-band laser emissions from extraterrestrial sources. From one observation of each star, our search algorithm identified a total of 285 spectral peaks with line widths slightly larger than the instrument's point-spread function.  After eliminating  false positives (including cosmic rays, instrumental artifacts, and terrestrial airglow lines), we identified 8 sources worthy of follow-up observations. We then analyzed all 1,835 additional observations of these follow-up targets, looking for recurring signals. We found 1 additional unexplained candidate in this followup search, but no candidate spikes which repeated at the same wavelength as one of the initial candidates at a later time.  Further analysis identified one candidate as a likely faint airglow line. Additionally, 4 of the candidates appear to be stationary in the telescope's reference frame--indicating a currently unknown terrestrial source. Although definitively not extraterrestrial in origin, these unknown terrestrial sources may represent novel atmospheric phenomena. This leaves 3 candidates which currently defy the prosaic explanations examined thus far, show no indication of a terrestrial origin and therefore warrant further investigation. Two of these three candidates originate from M-Type stars and one of them originates from an oscillating red giant--so an important emphasis in future follow-up work will entail disentangling natural astrophysical stellar anomalies from potential SETI sources.
+We examined archived observations of 2,821 stars taken by the high-resolution ESO HARPS spectrograph to search for potential narrow-band laser emissions from extraterrestrial sources. From one observation of each star, our search algorithm identified a total of 285 spectral peaks with line widths slightly larger than the instrument's point-spread function.  After eliminating  false positives (including cosmic rays, instrumental artifacts, and terrestrial airglow lines), we identified 8 sources worthy of follow-up observations. We then analyzed all 1,835 additional observations of these follow-up targets, looking for recurring signals. We found 1 additional unexplained candidate in this followup search, but no candidate spikes which repeated at the same wavelength as one of the initial candidates at a later time.  Further analysis identified one candidate as a likely faint airglow line. Additionally, 4 of the candidates match lines in observations of other stars on the same night, at the same wavelength in the telescope's reference frame--indicating a currently unknown terrestrial source. Although definitively not extraterrestrial in origin, these unknown terrestrial sources may represent novel atmospheric phenomena. This leaves 3 candidates which currently defy the prosaic explanations examined thus far, show no indication of a terrestrial origin and therefore warrant further investigation. Two of these three candidates originate from M-Type stars and one of them originates from an oscillating red giant--so an important emphasis in future follow-up work will entail disentangling natural astrophysical stellar anomalies from potential SETI sources.
 \end{abstract}
 
 \section{The Case for Optical SETI Searches}
@@ -29,7 +29,7 @@ As a communications tool, lasers can transmit data at substantially higher rates
 
 A further motivation to search for lasers is that they have multiple potential applications beyond communication. Light sail propulsion systems are another potential source of detectable laser energy. \cite{Guillochon_2015} proposed to search for microwave light sail beams of the type proposed for interstellar mission concepts such as Starshot \citep{STARSHOT}. However, one could search for visible-light laser propulsion systems as well. Extraterrestrial lasers might also be used to transport power from one source to another within a solar-system spanning civilization, or used for planetary defense \citep{Bible_Johansson_Hughes_Lubin_2013}. Thus, lasers powerful enough to detect from earth-based telescopes may occasionally be directed toward us, either as a deliberate attempt to communicate or incidentally. In this work, we aim to identify any past detections of such events by searching archival spectroscopic data.
 
-\section{Data and Methods}
+\section{Input Data}
 \subsection{HARPS: An Ideal Instrument for Optical SETI?}
 This survey uses archival reduced spectra from HARPS (High Accuracy Radial Planet Searcher), a high resolution spectrograph primarily built for exoplanet detection through the radial velocity method \citep{HARPS_specs}. It has a wavelength range of 378 nm-691 nm, with a gap in coverage between 530-533 nm, and a resolving power of 115,000 \citep{HARPS_specs} (which corresponds to about $10^{-2}$ \AA). The high resolution and large wavelength range of HARPS makes it ideal for searching for narrow band laser emissions. 
 
@@ -50,7 +50,20 @@ As can be seen in Figure \ref{fig:starlist}, this search covers a wide range of 
 In the initial search described in this work, we analyzed only one observation from each of these targets (generally, the first one returned by the ESO HARPS data archive search tool at \url{https://archive.eso.org/cms/data-portal.html}). For the handful of stars which yielded compelling candidates from the initial survey, we analyzed all subsequent observations. Future work will expand this search to encompass every available stellar spectra in the HARPS database.
 
 \section{Search Methodology}
-\subsection{Automated Search Algorithm}
+We subjected the targets to increasing levels of scrutiny, from automated search tools to detailed manual analysis.  We organize our search by tiers: candidates that pass the Tier 1 tests become Tier 1 candidates, which proceed to Tier 2 analysis, and so on.
+
+The structure of our search is as follows:
+\begin{itemize}
+    \item Tier 1: Automated Search and Basic Airglow Detection (Section \ref{s:automated})
+    \item Tier 2: Manual Assessment of Other False Positives (Section \ref{s:falsepositive})
+    \item Tier 3: Curve-Fitting Analysis (Section \ref{s:curvefit})
+    \item Interlude: Searching for Repeat Occurrences
+    \item Tier 4: Airglow Reanalysis (Section \ref{s:airglow_reanalysis})
+    \item Interlude: Detailed inspection of the HD127423 Candidate
+    \item Tier 5: Doppler Detection of Unknown Terrestrial Sources (Section \ref{s:doppler})
+\end{itemize}
+
+\subsection{Tier  1: Automated Search Algorithm}
 \label{s:automated}
 
 Our search algorithm must differentiate between possible laser signals, natural emission lines from the star or Earth's atmosphere, and artifacts created inside the HARPS instrument.  We use the spectral width of the feature as one of our distinguishing parameters. The point-spread function (PSF) describes the spectral resolution of the instrument, and shows how the instrument's optics would spread out a monochromatic light source to a finite spectral width at the instrument's CCD cameras. The full width half-maximum (FWHM) describes the the observed width of a spectral feature.  Since we are searching for near-monochromatic signals emitted from space, we should look for spikes in the spectral data whose FWHM is similar to the instrument's PSF.
@@ -59,13 +72,13 @@ Observed spectral peaks with a FWHM narrower than the PSF cannot represent light
 
 Our automated search algorithm follows a similar approach to previous archival optical SETI surveys \citep{Tellis_2017,Lipman_2019,Marcy_2021}. First, it establishes a baseline ``continuum'' stellar flux describing the star's overall spectrum by performing a running median filter with a width of 100 pixels (1 angstrom).  This is wide enough to smooth away many natural absorption and emission lines, but narrow enough to minimize the data discarded at the extreme ends of the spectrum.  It also calculates a running standard deviation using the same window width.
 
-Next, the algorithm searches for spectral data points more than 3.5 standard deviations above the running median.  This threshold is chosen to be as low as possible to maximize sensitivity, while minimizing the number of false positives resulting from random data noise.  No more than one in 5000 independent observations of a Gaussian process would rise above a 3.5 $\sigma$ threshold. 
+Next, the algorithm searches for spectral data points more than 3.5 standard deviations above the running median.  This threshold is chosen to be as low as possible to maximize sensitivity, while minimizing the number of false positives resulting from random data noise.  
 
-The HARPS instrument itself has an average PSF of approximately 4.1 pixels \citep{HARPS_specs} or 0.04 angstroms (though this varies with wavelength), so monochromatic signals from space should be spread out at least this much. This varies by wavelength, but serves as good general minimum value for our algorithm. Thus, we look for \emph{at least four pixels in a row} at or above the 3.5 sigma threshold.  If the pixel values were independent Gaussian random values, the probability of four in a row rising above the 3.5$\sigma$ confidence interval would be $5000^{-4}=10^{-15}$, which means we would be unlikely to see a single false positive from random noise anywhere in the measurements encompassed in our dataset. Of course, the instrument noise is not Gaussian and far from independently random, but this demonstrates that the probability of a random ``4-in-a-row'' spike is very small, and in practice our algorithm did not find any signals whose properties were consistent with misinterpreted random noise.
+Our algorithm looks for multiple spectral data points in a row that exceed this threshold, within both a minimum and maximum spike width.  The HARPS instrument itself has an average PSF of approximately 4.1 pixels \citep{HARPS_specs} or 0.04 angstroms (though this varies with wavelength), so monochromatic signals from space should be spread out at least this much. This varies by wavelength, but serves as good general minimum value for our algorithm. Thus, we look for \emph{at least four pixels in a row} at or above the 3.5 sigma threshold.  If the pixel values were independent Gaussian random values, the probability of four in a row rising above the 3.5$\sigma$ confidence interval would be about $5000^{-4}=10^{-15}$, which means we would be unlikely to see a single false positive from random noise anywhere in the measurements encompassed in our dataset. Of course, the instrument noise is not Gaussian and far from independently random, but this demonstrates that the probability of a random ``4-in-a-row'' spike is very small, and in practice our algorithm did not find any signals whose properties were consistent with misinterpreted random noise.
 
-Our algorithm has both a minimum and maximum spike width threshold.  As discussed, it ignores any spikes with fewer than 4 pixels in a row above the noise threshold, but it also ignores any spikes more than 60 pixels above the threshold.  This maximum criterion helps to weed out natural stellar emission lines, which tend to have wider peaks due to thermal doppler broadening, and also prevents spurious ``detections'' at the edge of the HARPS instrument's inherent data gap. The 100-point running median filter used to establish the continuum cannot filter out spectral features wider than about half the filter width, so our algorithm is insensitive to such wide spikes anyway.  Spikes wider than 4 pixels above the threshold but narrower than 60 are flagged as initial potential laser candidates and subjected to further review (See Section \ref{s:falsepositive}).
+The algorithm also ignores any spikes with more than 60 spectral data points in a row above the threshold.  This maximum criterion helps to weed out natural stellar emission lines, which tend to have wider peaks due to thermal doppler broadening, and also prevents spurious ``detections'' at the edge of the HARPS instrument's inherent data gap. The 100-point running median filter used to establish the continuum cannot filter out spectral features wider than about half the filter width, so our algorithm is insensitive to such wide spikes anyway.  Spikes wider than 4 spectral data points above the threshold but narrower than 60 are flagged as initial potential laser candidates and subjected to further review (See Section \ref{s:falsepositive}).
 
-To visualize the algorithm, we present an example candidate signal from  Proxima Centauri (Figure \ref{fig:algorithm-example}).  Note that the data spikes themselves affect the local standard deviation, and thus the noise threshold. The leftmost spike has more than 4 pixels in a row above the threshold, and so would be flagged as a candidate signal. The other two spikes have fewer than 4 pixels above the threshold, and so would not be flagged.
+To visualize the algorithm, we present an example candidate signal from Proxima Centauri (Figure \ref{fig:algorithm-example}).  Note that the data spikes themselves affect the local standard deviation, and thus the noise threshold. The leftmost spike has more than 4 pixels in a row above the threshold, and so would be flagged as a candidate signal. The other two spikes have fewer than 4 pixels above the threshold, and so would not be flagged.
 
 \begin{figure}
     \centering
@@ -74,11 +87,7 @@ To visualize the algorithm, we present an example candidate signal from  Proxima
     \label{fig:algorithm-example}
 \end{figure}
 
-\subsection{Eliminating False Positives}
-\label{s:falsepositive}
-Once the automated search algorithm has identified targets, a combination of automated and manual criteria is used to identify potential false positives and distinguish potential technosignatures from prosaic phenomena. We considered four categories of false positive: night sky airglow lines, cosmic rays, stellar emission lines, and calibration lamp bleedthrough.
-
-\subsubsection{Airglow}
+\subsubsection{Automated Airglow Detection}
 \label{s:Airglow}
 Atomic transitions in Earth's atmosphere (airglow) are a major source of false positives in our data.  Since these emission lines come from heavy atoms in a cool low-pressure atmosphere, their spectral width is near the instrumental PSF. Therefore, they are difficult to distinguish from lasers using linewidth alone. However, night sky airglow emissions only occur at specific wavelengths. Our initial search algorithm ignores any spikes detected in a 1-angstrom-wide window surrounding several of the most prominent airglow line wavelengths \citep{Luger_2017}. These `prohibited wavelengths' are shown in Table \ref{table:AirglowWavelengths}. For a visual example of an airglow line, see Figure \ref{fig:airglowexample}.
 
@@ -115,7 +124,11 @@ Atomic transitions in Earth's atmosphere (airglow) are a major source of false p
 
 Unfortunately, this means that any lasers transmitted at those wavelengths would not be detected by our search tool.  Doppler shift information could be used to distinguish between terrestrial and stellar sources (see Section \ref{s:unexplained}), but the initial search simply rejected all spikes within 1 {\AA} of the brightest airglow lines.
 
-Our initial automated search, based on the above criteria (4-60 pixels in a row above threshold, with several known bright airglow lines excluded) yielded 285 ``spike'' candidates from our 2,821 stars. Additional manual analysis was performed to exclude other false positives, as discussed in the next sections. Manual followup also included a search of the comprehensive airglow line database compiled by \cite{UVES_database}, for any rarer/fainter airglow lines which our automated filter did not account for: see Section \ref{s:airglow_reanalysis}. 
+Our Tier 1 automated search, based on the above criteria (4-60 pixels in a row above threshold, with several known bright airglow lines excluded) yielded 285 ``spike'' candidates from our 2,821 stars. Additional manual analysis was performed to exclude other false positives, as discussed in Section \ref{s:falsepositive}.  A later step (Tier 4) also included a reanalysis of airglow lines using the comprehensive airglow line database compiled by \cite{UVES_database}, for any rarer/fainter airglow lines which our automated filter did not account for: see Section \ref{s:airglow_reanalysis}. 
+
+\subsection{Tier 2: Eliminating Other False Positives}
+\label{s:falsepositive}
+Once the automated search algorithm identified Tier 1 targets, our Tier 2 analysis applied a combination of automated and manual criteria to identify potential false positives and distinguish potential technosignatures from prosaic phenomena.  In addition to airglow lines (considered in Tier 1 (Section \ref{s:Airglow}) and reconsidered in Tier 4 (Section \ref{s:airglow_reanalysis})), we looked for three other categories of false positive: cosmic rays, stellar emission lines, and calibration lamp bleedthrough.
 
 \subsubsection{Cosmic Rays}
 \label{s:cosmic}
@@ -165,12 +178,12 @@ For an example of a spectra which matches our criteria for natural stellar emiss
     \label{fig:eruptivevariablestar}
 \end{figure*}
 
-Manual inspection of CCD frames let us categorize 141 of our candidates as cosmic rays and 10 as calibration lamp bleedthrough. Automated filters eliminated the most prominent/recurrent airglow lines a-priori, and 89 candidates appeared in clusters indicative of stellar emission lines. This left us with 41 still unexplained.
+Manual inspection of CCD frames let us categorize 141 of our candidates as cosmic rays and 10 as calibration lamp bleedthrough. Automated filters eliminated the most prominent/recurrent airglow lines a-priori, and 89 candidates appeared in clusters indicative of stellar emission lines. This left us with 41 Tier 2 candidates still unexplained.
 
-\subsection{Curve-fitting algorithm}
+\subsection{Tier 3: Curve-fitting algorithm}
 \label{s:curvefit}
 
-Although our manual search was effective at spotting many cosmic rays, some will create trails that do not show diagonal streaks or extend outside the stellar spectrum, and will thus not be visually distinctive.  Other unidentified instrumental artifacts might also create false positives.  To rule these out, we fit a Gaussian curve to each of our candidate spikes, and considered its linewidth.  Line features caused by light passing through the HARPS optics will always have a line width greater than the instrument's point-spread function (PSF), while cosmic rays or internal artifacts may not. Although we attempted to mitigate this by setting a minimum number of pixels above the threshold in our initial search algorithm (See \ref{s:automated}), the PSF varies by wavelength and more precise methods are needed to accurately ascertain linewidth.
+Although our manual search was effective at spotting many cosmic rays, some will create trails that do not show diagonal streaks or extend outside the stellar spectrum, and will thus not be visually distinctive.  Other unidentified instrumental artifacts might also create false positives.  To rule these out, our Tier 3 analysis fit a Gaussian curve to each of our candidate spikes, and considered its linewidth.  Line features caused by light passing through the HARPS optics will always have a line width greater than the instrument's point-spread function (PSF), while cosmic rays or internal artifacts may not. Although we attempted to mitigate this by setting a minimum number of pixels above the threshold in our initial search algorithm (See \ref{s:automated}), the PSF varies by wavelength and more precise methods are needed to accurately ascertain linewidth.
 
 HARPS has a resolving power \citep{HARPS_specs} of 115000, meaning that the instrument's PSF at a given wavelength is given by 
 
@@ -183,15 +196,15 @@ The linewidth analysis was performed with \texttt{astropy.specutils} (\url{https
 
 If the best-fit width of a spike is greater than or equal to the instrument's PSF (Equation \ref{eq:psf}), the candidate is likelier to be a genuine SETI detection. Otherwise, the candidate signal possibly originates from within the instrument and is therefore likelier to be a cosmic ray or instrumental artifact.
 
-To validate this criterion, we tested it on two datasets: one consisting of candidates which we documented as cosmic rays in our initial manual investigation, the other dataset consisting of known airglow lines.  Since airglow lines originate from cool, heavy atoms, they have line widths narrower than the instrument's PSF, and therefore serve as good approximations of laser-like  signals.  If our curve fitting algorithm was working as expected, we should expect that a majority of cosmic rays would fall below the predicted linewidth, while a majority the airglow lines would exceed the predicted linewidth.
+To validate this criterion, we tested it on two types of false positives: one consisting of Tier 1 candidates which we documented as cosmic rays in our initial manual investigation, the other candidates that matched known airglow lines.  Since airglow lines originate from cool, heavy atoms, they have line widths narrower than the instrument's PSF, and therefore serve as good approximations of laser-like  signals.  If our curve fitting algorithm was working as expected, we should expect that a majority of cosmic rays would fall below the predicted linewidth, while a majority the airglow lines would exceed the predicted linewidth.
 
 This is the exactly what test showed.  Of 206 spikes manually identified as cosmic rays, 141 (68\%) fell below the predicted FWHM.  Of 188 spikes matching the wavelengths of common bright airglow lines, 15 (7.9\%) fell below the predicted FWHM, with the rest exceeding it. The cosmic rays which passed the test are likely due to particles slicing through multiple pixels, thus appearing to be at or above the instrumental PSF. However, the 15 airglow lines which failed the test illustrate there can be complicating factors. Linewidth estimates can be affected by instrumental noise that can decrease the accuracy of the fit. 
 
-Our validation test confirmed that this linewidth criterion correctly identified the vast majority of airglow lines as ``extra-instrumental'', and the majority of cosmic ray spikes as '`intra-instrumental'', but it should not be considered definitive.  We use it as a `positive' criterion to identify candidates which should be given higher priority, but not a `negative' criterion that definitively rules them out.  The vast majority of our candidates that fail this final test are probably stealthy cosmic rays, but there may still be a small handful which are `extra-instrumental' emissions distorted by instrumental noise. The candidates with linewidths below the predicted value for their given wavelength are listed in Appendix \ref{s:rejects}.
+Our validation test confirmed that this linewidth criterion correctly identified the vast majority of airglow lines as ``extra-instrumental'', and the majority of cosmic ray spikes as '`intra-instrumental'', but it should not be considered definitive.  We use it as a `positive' criterion to identify candidates which should be given higher priority, but not a `negative' criterion that definitively rules them out.  The vast majority of our candidates that fail this final test are probably stealthy cosmic rays, but there may still be a small handful which are `extra-instrumental' emissions distorted by instrumental noise. The Tier 2 candidates that failed Tier 3 analysis (because their linewidth was below the predicted value for their given wavelength) are listed in Appendix \ref{s:rejects}.
 
-\section{Results}
+\section{Results of Tier 1-3 Search}
 \label{s:results}
-After analyzing one spectrum each from our target list of stars, our search algorithm (Section \ref{s:automated}) identified 285 spikes which met our initial criteria and also did not match prominent terrestrial airglow lines. Of these, 142 were manually identified as cosmic rays (Section \ref{s:cosmic}), 89 were in clusters indicative of natural stellar emission lines,  10 were identified as calibration lamp bleed-through (Section \ref{s:bleedthrough}), and 2 were too faint and noisy to properly categorize. This left us with 41 candidates. Of these, the curve-fitting algorithm (Section \ref{s:curvefit}) found 8 candidates with linewidths at or above the predicted instrumental FWHM and which therefore stood out as our highest priority candidates. 
+After analyzing one spectrum each from our target list of stars, our search algorithm (Section \ref{s:automated}) identified 285 Tier 1 candidates which met our initial criteria and also did not match prominent terrestrial airglow lines. In Tier 2 analysis, 142 of these were manually identified as cosmic rays (Section \ref{s:cosmic}), 89 were in clusters indicative of natural stellar emission lines,  10 were identified as calibration lamp bleed-through (Section \ref{s:bleedthrough}), and 2 were too faint and noisy to properly categorize. This left us with 41 Tier 2 candidates. Of these, the curve-fitting algorithm (Section \ref{s:curvefit}) found 8 candidates with linewidths at or above the predicted instrumental FWHM and which therefore stood out as our highest priority Tier 3 candidates. 
 
 \begin{table}
 \begin{center}
@@ -205,17 +218,17 @@ After analyzing one spectrum each from our target list of stars, our search algo
  Calibration Lamp Bleedthrough &  10 \\ 
  Linewidth $<$ PSF & 34 \\
  Too dim to categorize & 2 \\
- Unexplained & 8 \\
+ Unexplained (Tier 3 candidates) & 8 \\
  \hline
  \end{tabular}
 \end{center}
-\caption{Classification of 285 spikes identified by the initial search algorithm, analyzing one observation per star.}
+\caption{Classification of 285 candidates identified by the Tier 1 automated search algorithm, analyzing one observation per star.  This summarizes the results of the false-positive identification (Tier 2) and linewidth analysis (Tier 3) steps.}
 \label{table:classification}
 \end{table}
 
 \subsection{Searching for Repeat Occurrences}
 \label{s:repeat}
-While laser transmissions could be ephemeral, signals that recur consistently would arguably be stronger candidates since they provide reproducible evidence and are less likely to be random noise.  Therefore, we repeated our analysis for {\em all} available observations of each of the 6 stars which yielded at least one candidate signal. Of 1,835 additional observations of these 6 stars, our initial search algorithm and curve fitting algorithm yielded 71 additional candidates at or above the predicted FWHM. We repeated our analysis from Sections \ref{s:falsepositive} and \ref{s:curvefit} on these observations, and categorized 29 as cosmic rays, 18 as clusters indicative of natural stellar emission lines, and 13 as due to calibration lamp bleedthrough. This left a total of 9 unexplained candidates for further analysis, 8 of which were in the original analysis and 1 new candidate which was found in the additional observations. In the case of the star that yielded a second candidate (HIP87607), the new candidate appeared at a different wavelength than the original candidate (see Table \ref{table:final_candidates}).
+While laser transmissions could be ephemeral, signals that recur consistently would arguably be stronger candidates since they provide reproducible evidence and are less likely to be random noise.  Therefore, we repeated our analysis for {\em all} available observations of each of the 6 stars which yielded at least one Tier 3 candidate signal. Of 1,835 additional observations of these 6 stars, our initial search algorithm and curve fitting algorithm yielded 71 additional candidates at or above the predicted FWHM. We repeated our Tier 2 and 3 analysis from Sections \ref{s:falsepositive} and \ref{s:curvefit} on these observations, and categorized 29 as cosmic rays, 18 as clusters indicative of natural stellar emission lines, and 13 as due to calibration lamp bleedthrough. This left a total of 9 Tier 3 candidates for further analysis, 8 of which were in the original analysis and 1 new candidate which was found in the additional observations. In the case of the star that yielded a second candidate (HIP87607), the new candidate appeared at a different wavelength than the original candidate (see Table \ref{table:tier_3_candidates}).
 
 \begin{table}
 \begin{center}
@@ -233,13 +246,13 @@ While laser transmissions could be ephemeral, signals that recur consistently wo
  \end{tabular}
 \end{center}
 
-\caption{Categorization of additional spikes identified in additional observations of unexplained candidates from Table \ref{table:classification}.}
+\caption{Categorization of additional spikes identified in additional observations of Tier 3 candidates from Table \ref{table:classification}.}
 \label{table:followup}
 \end{table}
 
-\subsection{Assessment of Surviving Unexplained Candidates}
+\subsection{Assessment of Tier 3 Candidates}
 \label{s:unexplained}
-In total, 9 candidates passed through all aforementioned filters, three of which originated from the same star (HIP87607). In the case of the HIP87607 candidates, none repeated at the same wavelength. We later determined that the CD-312415 candidate does appear to have multiple emissions at nearby wavelengths, though none of the subsequent detections trigerred the automated search algorithm. The rest of our candidates did not repeat at all. However, regardless of their transient and non-repeating nature, they survived a battery of tests which eliminated many natural and anthropogenic false positives. Therefore, each one warranted further investigation. These high priority candidates are listed in Table \ref{table:final_candidates}.
+In total, 9 candidates passed the Tier 1-3 tests, three of which originated from the same star (HIP87607). In the case of the HIP87607 candidates, none repeated at the same wavelength. We later determined that the CD-312415 candidate does appear to have multiple emissions at nearby wavelengths, though none of the subsequent detections trigerred the automated search algorithm. The rest of our candidates did not repeat at all. However, regardless of their transient and non-repeating nature, they survived a battery of tests which eliminated many natural and anthropogenic false positives. Therefore, each one warranted further investigation. These Tier 3 candidates are listed in Table \ref{table:tier_3_candidates}.
 
 \begin{table}
 \begin{center}
@@ -260,8 +273,8 @@ In total, 9 candidates passed through all aforementioned filters, three of which
  \hline
  \end{tabular}
 \end{center}
-\caption{Final list of candidate signals.}
-\label{table:final_candidates}
+\caption{Final list of Tier 3 signals.}
+\label{table:tier_3_candidates}
 \end{table}
 
 One of the candidates from HIP87607 is pictured in \ref{fig:seti_candidate_HIP87607}. 
@@ -274,11 +287,14 @@ One of the candidates from HIP87607 is pictured in \ref{fig:seti_candidate_HIP87
 
 Over half of these candidates originate from M-dwarf stars. These lines occurred in isolation, rather than as one of a ``forest'' of broader natural lines. However, as discussed in Section \ref{s:stellaremission}, these stars can sometimes produce relatively narrow emission lines due to relatively low temperatures, high metallicity, and frequent flaring activity \citep{Marcy_2021}. Therefore, though they are unexplained, a natural origin cannot be definitively ruled out. Conversely, the candidates from G and K type stars stood out as the most compelling, since such stars are generally not known to produce many natural emission lines \citep{stellar_emission_linesJ}. However, later analysis revealed that all of our G and K-type candidates appear to be from unknown terrestrial sources which are stationary in the telescope's reference frame (see \ref{s:hd127423}).
 
+\section{Further Analysis of Tier 3 Candidates}
 
-\subsection{Airglow Reanalysis}
+Having reduced the dataset to a handful of promising candidates, we subjected them to detailed scrutiny to identify sources of possible terrestrial contamination.
+
+\subsection{Tier 4: Airglow Reanalysis}
 \label{s:airglow_reanalysis}
 
-Although the brightest airglow lines were automatically filtered out by our search algorithm, we re-analyzed the candidates in Table \ref{table:final_candidates} to see if they matched any airglow lines in the more comprehensive database of \cite{faint_airglow_database}.  Care is required regarding Doppler shifts and reference frames. The HARPS data processing pipeline shifts the reduced HARPS spectra into the barycentric reference frame: we reverse that shift using the \texttt{HIERARCH ESO DRS BERV} parameter stored in the FITS header before comparing against the airglow database, to ensure we are comparing wavelengths in the terrestrial reference frame.
+Although the brightest airglow lines were automatically filtered out by our search algorithm, we re-analyzed the Tier 3 candidates in Table \ref{table:tier_3_candidates} to see if they matched any airglow lines in the more comprehensive database of \cite{faint_airglow_database}.  Care is required regarding Doppler shifts and reference frames. The HARPS data processing pipeline shifts the reduced HARPS spectra into the barycentric reference frame: we reverse that shift using the \texttt{HIERARCH ESO DRS BERV} parameter stored in the FITS header before comparing against the airglow database, to ensure we are comparing wavelengths in the terrestrial reference frame.
 
 Results are shown in Figure \ref{fig:airglow_reanalysis}. The HD96673 candidate is quite close to a known airglow line; the others definitely cannot be explained as airglow lines.
 
@@ -286,7 +302,7 @@ Sign errors are always possible with Doppler calculations.  The analysis above u
 
 \begin{figure*}
     \centering  \includegraphics[width=\textwidth]{airglow_reanalysis.pdf}
-    \caption{Comparison of candidate spikes from Table \ref{table:final_candidates} against a detailed airglow line database.  Blue lines: reduced HARPS spectra, doppler-shifted into terrestrial reference frame.  Red dotted lines: candidate wavelength identified by our spike identification algorithm. Green boxes: central wavelength (line) and full width half maximum (box) for airglow lines listed in  \cite{faint_airglow_database}.}
+    \caption{Comparison of Tier 3 candidate spikes from Table \ref{table:tier_3_candidates} against a detailed airglow line database.  Blue lines: reduced HARPS spectra, doppler-shifted into terrestrial reference frame.  Red dotted lines: candidate wavelength identified by our spike identification algorithm. Green boxes: central wavelength (line) and full width half maximum (box) for airglow lines listed in  \cite{faint_airglow_database}.}
     \label{fig:airglow_reanalysis}
 \end{figure*}
 
@@ -320,8 +336,7 @@ Sign errors are always possible with Doppler calculations.  The analysis above u
 \label{table:airglow_difference}
 \end{table*}
 
-
-\subsubsection{Investigating the HD127423 Candidate} 
+\subsection{Detailed Inspection of the HD127423 Candidate} 
 \label{s:hd127423}
 
 The HD127423 candidate seemed especially interesting.  It appeared to originate from a G-Type star, had no nearby airglow lines, had a gaussian lineshape close to the instrument's FWHM, and, as seen in Figure \ref{fig:seti_candidate_HD127423}, the spectral energy is entirely within the CCD image of the spectrometer's entry slit, suggesting that this is not a cosmic ray or calibration lamp bleed-through.  We subjected it to additional detailed analysis.
@@ -361,7 +376,11 @@ To confirm that this was a terrestrial signal, we Doppler-shifted each spectrum 
 
  We confirmed that the spike was in the observatory's reference frame by looking at the raw CCD images, which showed a common spike at the same CCD pixels in all of them.  There was no evidence of CCD "bleed-through" at this location, and these features appear at the same pixel position on the CCD images, confirming that there is no doppler shift at all relative to the calibration source. Thus, our analysis suggests that this is an as yet unknown terrestrial source.
 
-The two-hour time window during which the source persisted argues against satellites in low earth orbit, since at such velocities the satellite would not stay in the same location long enough to continuously beam down a laser for that duration. However, we can also rule out a transmitter at interstellar distances. We were therefore left with a signature which is unexplained, yet originating from a local source. A logical next step in our investigation was to see if any of the other candidates were also terrestrial by applying the same technique. After examining observations taken within a two hour window on the same night as each of our candidates, we found 3 more candidates which also appear to be stationary in the Earth's reference frame and therefore terrestrial in origin.  Although no longer viable SETI candidates, since they do not match known airglow lines they may represent novel atmospheric phenomena potentially of interest to meteorologists. This now leaves a total of four candidates which are unknown terrestrial sources, and three candidates which represent unknown extraterrestrial sources (see \ref{tab:terrestrial_or_extraterrestrial}). Although the HD96673 candidate is conspicuously near the wavelength of a faint airglow line (see \ref{s:airglow_reanalysis}), it only appeared in one of the ten observations taken that night.  
+The two-hour time window during which the source persisted argues against satellites in low earth orbit, since at such velocities the satellite would not stay in the same location long enough to continuously beam down a laser for that duration. However, we can also rule out a transmitter at interstellar distances. We were therefore left with a signature which is unexplained, yet originating from a local source. 
+
+\subsection{Tier 5: Doppler Detection of Unknown Terrestrial Sources}
+\label{s:doppler}
+Having identified an unknown terrestrial source for HD127423 (Section \ref{s:hd127423}) by looking for the same spike in contemporaneous observations,  we repeated this process for the other Tier 3 candidates.  After examining observations taken within a two hour window on the same night as each of our candidates, we found 3 more candidates in which also show up in other same-night observations and appear to be stationary in the Earth's reference frame: these are therefore also terrestrial in origin.  Although no longer viable SETI candidates, since they do not match known airglow lines they may represent novel atmospheric phenomena potentially of interest to meteorologists. Thus, we are left with four observations which are unknown terrestrial sources, and three Tier 5 candidates which may represent unknown extraterrestrial sources (see \ref{tab:terrestrial_or_extraterrestrial}). Although the HD96673 candidate is conspicuously near the wavelength of a faint airglow line (see \ref{s:airglow_reanalysis}), it only appeared in one of the ten observations taken that night.  
 
 \begin{table}
     \centering
@@ -370,19 +389,19 @@ The two-hour time window during which the source persisted argues against satell
         Observation Date/Time  & Star & Terrestrial Source? \\
     \hline
        2013-06-01T03:04:25.906 & HIP59341 & YES \\
-       2018-02-11T01:10:40.597 & CD-312415 & NO \\
        2013-06-01T04:16:19.375 & HD127423 & YES \\
-       2018-04-10T03:25:08.275 & GJ317 & NO \\
-       2012-10-22T23:39:09.238 & HIP87607 & NO \\
        2013-04-30T09:50:45.212 & HIP87607 & YES \\
        2005-07-20T04:08:04.468 & GJ4291 & YES \\
+       2018-04-10T03:25:08.275 & GJ317 & NO \\
+       2012-10-22T23:39:09.238 & HIP87607 & NO \\
+       2018-02-11T01:10:40.597 & CD-312415 & NO \\
     \hline
     \end{tabular}
-    \caption{Each candidate was subjected to a test where we checked other observations within a two hour window to see if there were recurrences of the same emission line on separate parts of the sky, and if so test whether or not these emissions are stationary in the terrrestrial frame. The verdicts from that test for each candidate are listed.}
+    \caption{In Tier 5 analysis, each Tier 4 candidate was subjected to a test where we checked other observations within a two hour window, looking for recurrences of the same emission line on separate parts of the sky, and if so whether these emissions are stationary in the terrrestrial frame. The verdicts from that test for each candidate are listed.}
     \label{tab:terrestrial_or_extraterrestrial}
 \end{table}
 
-\subsection{Estimating the Power Requirements for a Transmitting Laser}
+\section{Estimating the Power Requirements for a Transmitting Laser}
 If one of our candidate signatures came from an extraterrestrial laser, how powerful would it need to be for us to detect it?  We will use the HD127423 spike as a benchmark example.  Our calculation follows \cite{Lipman_2019}.  We do not know the diameter of the aperture of the laser’s transmitting optics: in these calculations, we assume 10 meters, similar to our own largest telescopes.
 
 The laser beam will spread out by diffraction as it travels to Earth, with an opening angle:
@@ -440,10 +459,10 @@ This calculation does not factor in extinction due to interstellar dust.  \cite{
 Thus, using the HD127423 candidate as a benchmark, we find that this survey has a sensitivity capable of detecting lasers which are possible to manufacture with currently existing human technology \citep{Lander1997ContinuouswaveCD}.
 
 \section{Summary and Conclusions}
-We analyzed single archived reduced spectra from 2821 stellar targets taken by the ESO’s HARPS spectroscope to search for potential signatures of lasers from extraterrestrial civilizations. We identified false positives (Section \ref{s:falsepositive}), including cosmic rays (Section \ref{s:cosmic}), bleed through from the Th-Ar calibration lamp (Section \ref{s:bleedthrough}), night sky airglow lines (Section \ref{s:Airglow}), and large clusters of emission lines which are likely the product of natural stellar activity (Section \ref{s:stellaremission}). Of the 2821 stellar spectra we analyzed, we identified 285 candidates with at least one narrow spectral emission feature.  41 of these did not fit any of the above false positive categories. We filtered this dataset further on the basis of linewidth (Section \ref{s:curvefit}) and analyzed all other HARPS observations of these stars (Section \ref{s:repeat}). We were left with a total of 9 compelling candidates (Section \ref{s:unexplained}). After further investigation, we identified one that could be a faint airglow line (Section \ref{s:airglow_reanalysis}). We then analyzed observations from other stars taken on the same night as each candidate within a two hour window. After shifting these additional spectra into the terrestrial reference frame, we found that four of the surviving candidates originate from unknown sources which are stationary in the telescope's reference frame (See 
-\ref{tab:terrestrial_or_extraterrestrial} in \ref{s:hd127423}). Although no longer viable SETI candidates and definitely terrestrial in origin, the source remains unknown. The two hour window during which they appeared argues against a laser from a classified satellite in Low Earth Orbit, though classified satellites in Geostationary cannot yet be ruled out. They also might represent novel atmospheric phenomena and could be of interest to meteorologists. This leaves three candidates which passed through all of our filters for prosaic explanations and show no indication of being terrestrial in origin, and therefore warrant further investigation as SETI candidates.
+We analyzed single archived reduced spectra from 2821 stellar targets taken by the ESO’s HARPS spectroscope to search for potential signatures of lasers from extraterrestrial civilizations. We identified false positives (Section \ref{s:falsepositive}), including cosmic rays (Section \ref{s:cosmic}), bleed through from the Th-Ar calibration lamp (Section \ref{s:bleedthrough}), night sky airglow lines (Section \ref{s:Airglow}), and large clusters of emission lines which are likely the product of natural stellar activity (Section \ref{s:stellaremission}). Of the 2821 stellar spectra we analyzed, we identified 285 Tier 1 candidates with at least one narrow spectral emission feature.  41 of these did not fit any of the above false positive categories, becoming Tier 2 candidates. We filtered this dataset further on the basis of linewidth (Section \ref{s:curvefit}) and analyzed all other HARPS observations of these stars (Section \ref{s:repeat}). We were left with a total of 9 compelling Tier 3 candidates (Section \ref{s:unexplained}). After further investigation, we identified one that could be a faint airglow line (Section \ref{s:airglow_reanalysis}, Tier 4). We then analyzed observations from other stars taken on the same night as each candidate within a two hour window. After shifting these additional spectra into the terrestrial reference frame, we found that four of the surviving candidates originate from unknown sources which are stationary in the telescope's reference frame (See 
+\ref{tab:terrestrial_or_extraterrestrial} in \ref{s:hd127423}). Although no longer viable SETI candidates and definitely terrestrial in origin, the source remains unknown. The two hour window during which they appeared argues against a laser from a classified satellite in Low Earth Orbit, though classified satellites in Geostationary cannot yet be ruled out. They also might represent novel atmospheric phenomena and could be of interest to meteorologists. This leaves three Tier 5 candidates which passed through all of our filters for prosaic explanations and show no indication of being terrestrial in origin, and therefore warrant further investigation as SETI candidates.
 
-Of our surviving candidates, two of them (GJ317 and HIP87607) originate from M-type stars, and one of them (CD-312415) originates from an oscillating Red Giant \citep{CD-312415_RED_GIANT}. Although these three candidates do not match our criteria for stellar emission lines, detection of candidate laser signals is more ambiguous in red dwarfs due to their relatively cool temperatures, high metallicity, and coronal activity, which leads to flaring and prominent narrow emission lines \citep{Marcy_2021}. Similarly, an oscillating red giant star also indicates stellar activity at relatively cool temperatures, which makes it a much more ambiguous candidate. Nonetheless, they still warrant further followup. 
+Of our surviving Tier 5 candidates, two of them (GJ317 and HIP87607) originate from M-type stars, and one of them (CD-312415) originates from an oscillating Red Giant \citep{CD-312415_RED_GIANT}. Although these three candidates do not match our criteria for stellar emission lines, detection of candidate laser signals is more ambiguous in red dwarfs due to their relatively cool temperatures, high metallicity, and coronal activity, which leads to flaring and prominent narrow emission lines \citep{Marcy_2021}. Similarly, an oscillating red giant star also indicates stellar activity at relatively cool temperatures, which makes it a much more ambiguous candidate. Nonetheless, they still warrant further followup. 
 
 Since our study analyzed only one observation from each target and then performed follow-up analysis of additional observations only on stars where a candidate was found, it can only constrain the likelihood of continuous sources repeatedly directed toward Earth.  It could easily miss more intermittent signals. Thus, our study must contend with the longstanding challenge faced by many other SETI searches: how can we adapt our methodologies to account for the possibility of intermittent transmitters or ``one-off'' signals?  Can ``one-off'' signals constitute SETI detections, or is repeatability an inescapable requirement of a confirmed detection \citep{2019nasatechnosignatures, Wow!Signal}? These questions will define the future direction of this project.
 
@@ -454,9 +473,9 @@ Our search only analyzed one observation from each star. While we did look at al
 
 We can also expand our search spatially, by covering the Northern Hemisphere. HARPS-N operates as a sister instrument with the same capabilities \citep{HARPS_N}, but covering a different set of stars. Therefore, we can expand the search both spatially and temporally to include orders of magnitude more observations and targets, improving our odds of discovering technosignatures and novel astrophysical anomalies.
 
-\subsection{Further Investigating The Remaining Unexplained Candidates}
+\subsection{Further Investigation of the Tier 5 Candidates}
 
-We will also continue to investigate the final 3 surviving unexplained candidates. In particular, since these candidates are from M-Type and oscillating Red Giant stars, the key challenge will be ascertaining whether they represent natural stellar activity. We will attempt to develop rigorous tests to differentiate natural astrophysical stellar events from potential technosignatures. 
+We will also continue to investigate the final three Tier 5 candidates. In particular, since these candidates are from M-Type and oscillating Red Giant stars, the key challenge will be ascertaining whether they represent natural stellar activity. We will attempt to develop rigorous tests to differentiate natural astrophysical stellar events from potential technosignatures. 
 
 Additionally, initial manual analysis of CCD images and subsequent curve fitting algorithm is sufficient to rule out a vast majority of cosmic rays. However, there still may be some rare scenarios which allow cosmic rays to slice through the CCD at an angle which leaves little to no visible signature in the final image and happens to match or exceed HARPS' PSF/FWHM. We intend to use optimal extraction \citep{horne86optimal_extraction} as an additional test to determine if the pattern of these features extracted directly from the eschellogram  match the expected pattern from starlight passing through the HARPS optics. The ancillary data from the HARPS pipeline \citep{HARPS_specs} may provide optimal extraction data: if not, a bespoke reanalysis will be performed. 
 
@@ -473,7 +492,7 @@ Both authors declare that they have no conflicts of interest.
 
 \appendix
 
-\section{Unexplained Candidates Rejected by the Curve Fitting Algorithm}
+\section{Tier 2 Candidates Rejected by the Curve Fitting Algorithm (Tier 3)}
 \label{s:rejects}
 
 \begin{table}[h!]
@@ -519,7 +538,7 @@ Both authors declare that they have no conflicts of interest.
  \hline
  \end{tabular}
 \end{center}
-\caption{Candidate spikes with line widths narrower than the the predicted FWHM of the instrument.  As discussed in Section \ref{s:curvefit}, this test indicates that these candidates are probably not ``extra-instrumental'', but we include them here for completeness.}
+\caption{Tier 2 candidate spikes that failed Tier 3 analysis because their line widths were narrower than the the predicted FWHM of the instrument.  As discussed in Section \ref{s:curvefit}, this indicates that these candidates are probably not ``extra-instrumental'', but we include them here for completeness.}
 \end{table}
 
 \bibliographystyle{aasjournalv7}
