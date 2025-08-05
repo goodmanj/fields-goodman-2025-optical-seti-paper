@@ -16,7 +16,7 @@
 
 \correspondingauthor{Benjamin Fields}
 \email{bnfields72@gmail.com}
-\date{July 2025}
+\date{August 2025}
 
 \begin{abstract}
 We examined archived observations of 2,821 stars taken by the high-resolution ESO HARPS spectrograph to search for potential narrow-band laser emissions from extraterrestrial sources. From one observation of each star, our search algorithm identified a total of 285 spectral peaks with line widths slightly larger than the instrument's point-spread function.  After eliminating  false positives (including cosmic rays, instrumental artifacts, and terrestrial airglow lines, we identified 8 sources worthy of follow-up observations. We then analyzed all 1,835 additional observations of these follow-up targets, looking for recurring signals. We found 1 additional unexplained candidate in this followup search, but no candidate spikes which repeated at the same wavelength as one of the initial candidates at a later time.  Further analysis identified one candidate as a likely faint airglow line. The remaining seven candidates continued to defy all false positive categories, including interference by LiDAR satellites and adaptive optics lasers from neighboring observatories. However, four of these seven surviving candidates appear to be stationary in the telescope's reference frame--indicating an as-yet unknown terrestrial source. This leaves 3 final candidates which currently defy the prosaic explanations examined thus far, show no indication of a terrestrial origin and therefore warrant further investigation. Two of these three candidates originate from M-Type stars and one of them originates from an oscillating red giant, so follow-up work will disentangle natural astrophysical stellar processes from potential SETI sources.
@@ -93,8 +93,8 @@ Atomic transitions in Earth's atmosphere (airglow) are a major source of false p
 
 \begin{figure*}
     \centering
-    \includegraphics[width=\textwidth]{airglowexample.png}
-    \caption{An example of a commonly recurring airglow line at 5577 \AA (Observation Date/Time: 2013-03-31, 08:25:02.332). Top panel: reduced spectrum (the red dashed line indicates the spike detected by the automated algorithm).  Bottom panel: subsection of the corresponding CCD image for this wavelength range. The stellar spectrum is the pale blue band. At the location of the detected spike, the CCD image shows a visible corresponding bright spot.}
+    \includegraphics[width=\textwidth]{clean-figures/airglowexample.pdf}
+    \caption{An example of a commonly recurring airglow line at 5577 \AA (Observation Date/Time: 2013-03-31, 08:25:02.332). Top panel: reduced spectrum (the red dashed line indicates the spike detected by the automated algorithm).  Bottom panel: subsection of the corresponding CCD image for this wavelength range. The stellar spectrum is the pale blue band. At the location of the detected spike, the CCD image shows a visible corresponding bright spot.  There is a small wavelength offset between the upper and lower panels because the HARPS pipeeline doppler-shifts the reduced spectrum into a solar system barycentric coordinate system.}
     \label{fig:airglowexample}
 \end{figure*}
 
@@ -144,7 +144,7 @@ We manually classified a detection as a ``likely cosmic ray'' if it had any of t
 
 \begin{figure*}
     \centering
-    \includegraphics[width=\textwidth]{HARPS.2010-09-14T01_44_18.810cosmicRAY.png}
+    \includegraphics[width=\textwidth]{clean-figures/Cosmic_ray_example.pdf}
     \caption{An example of a cosmic ray (Observation Date/Time: 2010-09-14, 01:44:18.810). Top panel: reduced spectrum (the red dashed line indicates the spike detected by the automated algorithm).  Bottom panel: subsection of the corresponding CCD image for this wavelength range. The stellar spectrum is the pale blue band. At the location of the detected spike, the CCD image shows a long track which spills over outside the band of starlight and into surrounding CCD pixels.}
     \label{fig:Cosmic_ray_example}
 \end{figure*}
@@ -155,7 +155,7 @@ We manually classified a detection as a ``likely cosmic ray'' if it had any of t
  
 \begin{figure*}
     \centering
-    \includegraphics[width=\textwidth]{HARPS_2013-08-18T05_02_20_353bleed.png}
+    \includegraphics[width=\textwidth]{clean-figures/bleedthrough.pdf}
     \caption{An example of calibration lamp bleed-through (Observation Date/Time: 2013-08-18, 05:02:20.353). Top panel: reduced spectrum, bottom panel: raw CCD image. The upper band of bright spots in the CCD image is from the calibration lamp; the lower band is starlight.  Charge from an oversaturated emission line in the calibration lamp has bled across to contaminate the stellar spectrum.}
     \label{fig:bleedthrough}
 \end{figure*}
@@ -170,13 +170,13 @@ Secondly, natural stellar emission lines rarely show up in isolation. Most stars
 
 For an example of a spectra which matches our criteria for natural stellar emission lines, see Figure \ref{fig:eruptivevariablestar}  from eruptive variable star GJ234.
 
-\begin{figure*}
+\begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{eruptive_variable_star_reduced_spectrum-1.png}
-    \includegraphics[width=\textwidth]{eruptivevariablestarbroadpeak.png}
-    \caption{Top panel: Reduced spectra of an eruptive variable star, GJ234. Numerous spikes are visible, as is typical of natural stellar emission-line activity from eruptive stars like this one.  Bottom panel: Zoom-in on one of approximately 10 spikes observed from this star. These emission features are much broader than the HARPS instrument's point spread function, as is typical of natural stellar emission lines. (HARPS OBSERVATION ID: \path{ADP.2014-10-06T10:04:35.637.fits})}.
+    \includegraphics[width=\columnwidth]{clean-figures/eruptivevariablestar.pdf}
+    \caption{Reduced spectra of an eruptive variable star, GJ234. Numerous spikes are visible, as is typical of natural stellar emission-line activity from eruptive stars like this one.  Inset: Zoom-in on one of approximately 10 spikes observed from 
+    this star. These emission features are much broader than the HARPS instrument's point spread function, as is typical of natural stellar emission lines.}.
     \label{fig:eruptivevariablestar}
-\end{figure*}
+\end{figure}
 
 Manual inspection of CCD frames let us categorize 141 of our candidates as cosmic rays and 10 as calibration lamp bleedthrough. Automated filters eliminated the most prominent/recurrent airglow lines a-priori, and 89 candidates appeared in clusters indicative of stellar emission lines. This left us with 41 Tier 2 candidates still unexplained.
 
@@ -332,7 +332,7 @@ Sign errors are always possible with Doppler calculations.  The analysis above u
 The HD127423 candidate seemed especially interesting.  It appeared to originate from a G-Type star, had no nearby airglow lines, had a gaussian lineshape close to the instrument's FWHM, and, as seen in Figure \ref{fig:seti_candidate_HD127423}, the spectral energy is entirely within the CCD image of the spectrometer's entry slit, suggesting that this is not a cosmic ray or calibration lamp bleed-through.  We subjected it to additional detailed analysis.
 
 \begin{figure*}
-    \centering  \includegraphics[width=\textwidth]{HD127423.png}
+    \centering  \includegraphics[width=\textwidth]{clean-figures/seti_candidate_HD127423.pdf}
     \caption{Star: HD127423, Spectral Type:G0V, Observation Date/Time: 2013-06-01, 04:16:19.375. Top panel: reduced spectrum.  Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
     \label{fig:seti_candidate_HD127423}
 \end{figure*}
@@ -359,7 +359,7 @@ To confirm that this was a terrestrial signal, we Doppler-shifted each spectrum 
 
 \begin{figure*}
     \centering
-    \includegraphics[width=\textwidth]{HD127423Dopplershift.pdf}
+    \includegraphics[width=\textwidth]{clean-figures/stellarframespectra.pdf}
     \caption{Reduced spectra for all stars observed by HARPS within +/- 1 hour of the HD127423 candidate at 2013-06-01, 04:16:19.375 (HD127423, HD107181, HD128356, HD126535, HD143120, HD143361 and HD144899).  Each observation showsa spike around 5733 \AA. Top panel: all 7 spectra in the default reference frame for HARPS pipeline (solar system barycenter). Middle panel: all 7 spectra, doppler shifted to the reference frame of each respective star. Bottom panel: all 7 spectra, Doppler shifted into the Earth's reference frame.  The alignment of the 5733{\AA} spikes in the terrestrial reference frame indicates that this is a terrestrial signal, not a stellar feature.}
     \label{fig:stellarframespectra}
 \end{figure*}
@@ -396,13 +396,13 @@ Over half of our Tier 4 candidates originate from M-dwarf stars. These lines occ
 A total of three Tier 5 candidates currently show no indication of being from a terrestrial source and do not match our criteria for any of our false positive categories, therefore warranting further investigation. These include a candidates from M-type stars HIP87607 (see: \ref{fig:seti_candidate_HIP87607}) and GJ317 (see: \ref{fig:seti_candidate_GJ317}), as well as from the oscillating red giant CD-312415.
 
 \begin{figure*}
-    \centering  \includegraphics[width=\textwidth]{20_ADP.2014-09-26T16_52_17.823_zoom (1).png}
+    \centering  \includegraphics[width=\textwidth]{clean-figures/seti_candidate_HIP87607.pdf}
     \caption{Star: HIP87607, Spectral Type: M0V, (Observation Date/Time: 2012-10-22, 23:39:09.238) Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
     \label{fig:seti_candidate_HIP87607}
 \end{figure*}
 
 \begin{figure*}
-    \centering  \includegraphics[width=\textwidth]{2_ADP.2018-04-11T01_01_47.531_zoom (2).png}
+    \centering  \includegraphics[width=\textwidth]{clean-figures/seti_candidate_GJ317.pdf}
     \caption{Star: GJ317, Spectral Type: M3.5V, (Observation Date/Time: 2018-04-10, 03:25:08.275) Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
     \label{fig:seti_candidate_GJ317}
 \end{figure*}
