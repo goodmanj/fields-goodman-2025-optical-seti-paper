@@ -95,7 +95,7 @@ Atomic transitions in Earth's atmosphere (airglow) are a major source of false p
 \begin{figure*}
     \centering
     \includegraphics[width=\textwidth]{clean-figures/airglowexample.pdf}
-    \caption{An example of a commonly recurring airglow line at 5577 \AA (Observation Date/Time: 2013-03-31, 08:25:02.332). Top panel: reduced spectrum (the red dashed line indicates the spike detected by the automated algorithm).  Bottom panel: subsection of the corresponding CCD image for this wavelength range. The stellar spectrum is the pale blue band. At the location of the detected spike, the CCD image shows a visible corresponding bright spot.  There is a small wavelength offset between the upper and lower panels because the HARPS pipeeline doppler-shifts the reduced spectrum into a solar system barycentric coordinate system.}
+    \caption{An example of a commonly recurring airglow line at 5577 \AA (Observation Date/Time: 2013-03-31, 08:25:02.332). Top panel: reduced spectrum (the red dashed line indicates the spike detected by the automated algorithm).  Bottom panel: subsection of the corresponding CCD image for this wavelength range. The stellar spectrum is the pale blue band. At the location of the detected spike, the CCD image shows a visible corresponding bright spot.  As in all figures of this type throughout this work, there is a small wavelength offset between the upper and lower panels because the HARPS pipeline applies a doppler shift to the reduced spectrum.}
     \label{fig:airglowexample}
 \end{figure*}
 
@@ -146,7 +146,7 @@ We manually classified a detection as a ``likely cosmic ray'' if it had any of t
 \begin{figure*}
     \centering
     \includegraphics[width=\textwidth]{clean-figures/Cosmic_ray_example.pdf}
-    \caption{An example of a cosmic ray (Observation Date/Time: 2010-09-14, 01:44:18.810). Top panel: reduced spectrum (the red dashed line indicates the spike detected by the automated algorithm).  Bottom panel: subsection of the corresponding CCD image for this wavelength range. The stellar spectrum is the pale blue band. At the location of the detected spike, the CCD image shows a long track which spills over outside the band of starlight and into surrounding CCD pixels.}
+    \caption{An example of a cosmic ray (Observation Date/Time: 2010-09-14, 01:44:18.810). Top panel: reduced spectrum (the red dashed line indicates the spike detected by the automated algorithm).  Bottom panel: subsection of the corresponding CCD image for this wavelength range. The stellar spectrum is the pale blue band. At the location of the detected spike, the CCD image shows a long track which spills over outside the band of starlight and into surrounding CCD pixels.  }  
     \label{fig:Cosmic_ray_example}
 \end{figure*}
 
@@ -157,7 +157,7 @@ We manually classified a detection as a ``likely cosmic ray'' if it had any of t
 \begin{figure*}
     \centering
     \includegraphics[width=\textwidth]{clean-figures/bleedthrough.pdf}
-    \caption{An example of calibration lamp bleed-through (Observation Date/Time: 2013-08-18, 05:02:20.353). Top panel: reduced spectrum, bottom panel: raw CCD image. The upper band of bright spots in the CCD image is from the calibration lamp; the lower band is starlight.  Charge from an oversaturated emission line in the calibration lamp has bled across to contaminate the stellar spectrum.}
+    \caption{An example of calibration lamp bleed-through (Observation Date/Time: 2013-08-18, 05:02:20.353). Top panel: reduced spectrum, bottom panel: raw CCD image. The upper band of bright spots in the CCD image is from the calibration lamp; the lower band is starlight.  Charge from an oversaturated emission line in the calibration lamp has bled across to contaminate the stellar spectrum.  As in all figures of this type throughout this work, there is a small wavelength offset between the upper and lower panels because the HARPS pipeline applies a doppler shift to the reduced spectrum.}
     \label{fig:bleedthrough}
 \end{figure*}
 
@@ -174,12 +174,12 @@ For an example of a spectra which matches our criteria for natural stellar emiss
 \begin{figure}
     \centering
     \includegraphics[width=\columnwidth]{clean-figures/eruptivevariablestar.pdf}
-    \caption{Reduced spectra of an eruptive variable star, GJ234. Numerous spikes are visible, as is typical of natural stellar emission-line activity from eruptive stars like this one.  Inset: Zoom-in on one of approximately 10 spikes observed from 
+    \caption{Reduced spectrum of an eruptive variable star, GJ234. Numerous spikes are visible, as is typical of natural stellar emission-line activity from eruptive stars like this one.  Inset: Zoom-in on one of approximately 10 spikes observed from 
     this star. These emission features are much broader than the HARPS instrument's point spread function, as is typical of natural stellar emission lines.}.
     \label{fig:eruptivevariablestar}
 \end{figure}
 
-Manual inspection of CCD frames let us categorize 141 of our candidates as cosmic rays and 10 as calibration lamp bleedthrough. Automated filters eliminated the most prominent/recurrent airglow lines a-priori, and 89 candidates appeared in clusters indicative of stellar emission lines. This left us with 41 Tier 2 candidates still unexplained.
+Manual inspection of CCD frames let us categorize 141 of our candidates as cosmic rays and 10 as calibration lamp bleedthrough. Automated filters eliminated the most prominent/recurrent airglow lines {\em a priori}, and 89 candidates appeared in clusters indicative of stellar emission lines. This left us with 41 Tier 2 candidates still unexplained.
 
 \subsection{Tier 3: Curve-fitting algorithm}
 \label{s:curvefit}
@@ -383,12 +383,12 @@ Having identified an unknown terrestrial source for HD127423 (Section \ref{s:hd1
        2013-06-01T04:16:19.375 & HD127423 & YES \\
        2013-04-30T09:50:45.212 & HIP87607 & YES \\
        2005-07-20T04:08:04.468 & GJ4291 & YES \\
-       2018-04-10T03:25:08.275 & GJ317 & NO \\
-       2012-10-22T23:39:09.238 & HIP87607 & NO \\
-       2018-02-11T01:10:40.597 & CD-312415 & NO \\
+       2018-04-10T03:25:08.275 & GJ317 & NO (Tier 5)\\
+       2012-10-22T23:39:09.238 & HIP87607 & NO (Tier 5)\\
+       2018-02-11T01:10:40.597 & CD-312415 & NO (Tier 5)\\
     \hline
     \end{tabular}
-    \caption{In Tier 5 analysis, each Tier 4 candidate was subjected to a test where we checked other observations within a two hour window, looking for recurrences of the same emission line on separate parts of the sky, and if so whether these emissions are stationary in the terrrestrial frame. The verdicts from that test for each candidate are listed.}
+    \caption{In Tier 5 analysis, each Tier 4 candidate was tested to see whether similar emission features appears in observations of other stars on the same night, and if so whether these emissions are stationary in the terrrestrial frame.  Candidates that do not appear to have a persistent terrestrial source form our final Tier 5 candidate list.}
     \label{tab:terrestrial_or_extraterrestrial}
 \end{table}
 
@@ -409,7 +409,7 @@ A total of three Tier 5 candidates currently show no indication of being from a 
 \end{figure*}
 
 \section{Estimating the Power Requirements for a Transmitting Laser}
-If one of our candidate signatures came from an extraterrestrial laser, how powerful would it need to be for us to detect it?  We will use the HD127423 spike as a benchmark example.  Our calculation follows \cite{Lipman_2019}.  We do not know the diameter of the aperture of the laser's transmitting optics: in these calculations, we assume 10 meters, similar to our own largest telescopes.
+If one of our candidate signatures came from an extraterrestrial laser, how powerful would it need to be for us to detect it?  We will use the GJ317 spike as a benchmark example.  Our calculation follows \cite{Lipman_2019}.  We do not know the diameter of the aperture of the laser's transmitting optics: in these calculations, we assume 10 meters, similar to our own largest telescopes.
 
 The laser beam will spread out by diffraction as it travels to Earth, with an opening angle:
 
@@ -444,24 +444,6 @@ Solving for the transmitter power $L_T$:
 \begin{equation}
     L_T = \frac{1.22^2 N_{\mbox{det}} \lambda h c D^2}{\epsilon d_T^2 d_R^2 T}
 \end{equation}
-
-% \begin{table}[h]
-% \begin{tabular}{ll}
-% $N_{\mbox{det}}$ & 5000\\
-% $\lambda$ & 4733 \AA \\
-% D & 68.96 pc \\
-% $\epsilon$ & 0.057 (from HARPS user manual)\\
-% $d_T$ & 10m (assumed) \\
-% $d_R$ & 3.6m \\
-% $T$ & 900 s\\
-% \end{tabular}
-% \label{t:powervalues}
-% \caption{Values used to calculate transmitter power needed to explain spectral spike candidate in observation of HD127423 at 2013-06-01, 04:16:19}
-% \end{table}
-
-% Plugging in values given in Table \ref{t:powervalues}, we get a required transmitter power of about 50 kW, continuously for the duration of the 15 minute exposure time. If the transmitter were pulsed, higher power would be needed, in proportion to the transmitter's duty cycle. 
-
-% This calculation does not factor in extinction due to interstellar dust.  \cite{Hippke_2018} estimated power losses due to astronomical dust, and found them to be appreciable only for distances $>=$ 300 pc, and an order-of-magnitude problem at distances $>=$ 1000 pc.  Thus, we are justified in ignoring them for close targets like HD127423 (68.96 pc).
 
 \begin{table}[h]
 \begin{tabular}{ll}
