@@ -7,6 +7,7 @@
 
 \title{The 2821 Star Southern Hemisphere Optical SETI Survey}
 \author[0009-0008-7048-916X]{Benjamin Fields} %https://orcid.org/0009-0008-7048-916X
+\affiliation{Institute for Educational Advancement, Pasadena CA}
 \affiliation{Wheaton College, Norton MA USA}
 \email{bnfields72@gmail.com}
 
@@ -261,15 +262,15 @@ In total, 9 candidates passed the Tier 1-3 tests, three of which originated from
 & Spectral & & Wavelength\\
  Star & Type & Observation Time & \AA \\ 
 \hline
- HIP59341 & G5V & 2013-06-01, 03:04:25.906 & 4042.84  \\
- CD-312415 & RG & 2018-02-11, 01:10:40.597 & 3931.24  \\ 
- GJ317 & M3.5V & 2018-04-10, 03:25:08.275 &  4662.77  \\ 
- HD127423 & G0V & 2013-06-01, 04:16:19.375 &  5732.93  \\
- HD96673 & K3V & 2006-01-28, 07:17:55.086 & 3931.31  \\
- HIP87607  & M0V & 2012-10-22, 23:39:09.238 & 3784.09  \\
- HIP87607  & M0V & 2012-10-22, 23:39:09.238 & 4042.74 \\
- HIP87607  & M0V & 2013-04-30, 09:50:45.212 & 5454.02 \\
- GJ4291 & K3V & 2005-07-20, 04:08:04.468 & 3841.74  \\
+ HIP59341 & G5V & 2013-06-01 03:04:25.906 & 4042.84\\
+ CD-312415 & RG & 2018-02-11 01:10:40.597 & 3931.24\\ 
+ GJ317 & M3.5V & 2018-04-10 03:25:08.275 &  4662.77\\ 
+ HD127423 & G0V & 2013-06-01 04:16:19.375 &  5732.93\\
+ HD96673 & K3V & 2006-01-28 07:17:55.086 & 3931.31\\
+ HIP87607  & M0V & 2012-10-22 23:39:09.238 & 3784.09\\
+ HIP87607  & M0V & 2012-10-22 23:39:09.238 & 4042.74\\
+ HIP87607  & M0V & 2013-04-30 09:50:45.212 & 5454.02\\
+ GJ4291 & K3V & 2005-07-20 04:08:04.468 & 3841.74\\
  \hline
  \end{tabular}
 \end{center}
@@ -444,25 +445,43 @@ Solving for the transmitter power $L_T$:
     L_T = \frac{1.22^2 N_{\mbox{det}} \lambda h c D^2}{\epsilon d_T^2 d_R^2 T}
 \end{equation}
 
+% \begin{table}[h]
+% \begin{tabular}{ll}
+% $N_{\mbox{det}}$ & 5000\\
+% $\lambda$ & 4733 \AA \\
+% D & 68.96 pc \\
+% $\epsilon$ & 0.057 (from HARPS user manual)\\
+% $d_T$ & 10m (assumed) \\
+% $d_R$ & 3.6m \\
+% $T$ & 900 s\\
+% \end{tabular}
+% \label{t:powervalues}
+% \caption{Values used to calculate transmitter power needed to explain spectral spike candidate in observation of HD127423 at 2013-06-01, 04:16:19}
+% \end{table}
+
+% Plugging in values given in Table \ref{t:powervalues}, we get a required transmitter power of about 50 kW, continuously for the duration of the 15 minute exposure time. If the transmitter were pulsed, higher power would be needed, in proportion to the transmitter's duty cycle. 
+
+% This calculation does not factor in extinction due to interstellar dust.  \cite{Hippke_2018} estimated power losses due to astronomical dust, and found them to be appreciable only for distances $>=$ 300 pc, and an order-of-magnitude problem at distances $>=$ 1000 pc.  Thus, we are justified in ignoring them for close targets like HD127423 (68.96 pc).
+
 \begin{table}[h]
 \begin{tabular}{ll}
-$N_{\mbox{det}}$ & 5000\\
-$\lambda$ & 4733 \AA \\
-D & 68.96 pc \\
+$N_{\mbox{det}}$ & 1500\\
+$\lambda$ & 4663 \AA \\
+D & 15.2 pc \\
 $\epsilon$ & 0.057 (from HARPS user manual)\\
 $d_T$ & 10m (assumed) \\
 $d_R$ & 3.6m \\
 $T$ & 900 s\\
 \end{tabular}
 \label{t:powervalues}
-\caption{Values used to calculate transmitter power needed to explain spectral spike candidate in observation of HD127423 at 2013-06-01, 04:16:19}
+\caption{Values used to calculate transmitter power needed to explain spectral spike candidate in observation of GJ317 at 2018-04-11, 01:01:47.531.}
 \end{table}
 
-Plugging in values given in Table \ref{t:powervalues}, we get a required transmitter power of about 50 kW, continuously for the duration of the 15 minute exposure time. If the transmitter were pulsed, higher power would be needed, in proportion to the transmitter's duty cycle. 
+Plugging in values given in Table \ref{t:powervalues} using the GJ317 candidate as an example, we get a required transmitter power of about 700 W, continuously for the duration of the 15 minute exposure time. If the transmitter were pulsed, higher power would be needed, in proportion to the transmitter's duty cycle. 
 
-This calculation does not factor in extinction due to interstellar dust.  \cite{Hippke_2018} estimated power losses due to astronomical dust, and found them to be appreciable only for distances $>=$ 300 pc, and an order-of-magnitude problem at distances $>=$ 1000 pc.  Thus, we are justified in ignoring them for close targets like HD127423 (68.96 pc).
+This calculation does not factor in extinction due to interstellar dust.  \cite{Hippke_2018} estimated power losses due to astronomical dust, and found them to be appreciable only for distances $>=$ 300 pc, and an order-of-magnitude problem at distances $>=$ 1000 pc.  Thus, we are justified in ignoring them for close targets like GJ317 (15.2 pc).
 
-Thus, using the HD127423 candidate as a benchmark, we find that this survey has a sensitivity capable of detecting lasers which are possible to manufacture with currently existing human technology \citep{Lander1997ContinuouswaveCD}.
+Thus, using the GJ317 candidate as a benchmark, we find that this survey has a sensitivity capable of detecting lasers which are possible to manufacture with currently existing human technology \citep{Lander1997ContinuouswaveCD}.
 
 \section{Summary and Conclusions}
 We analyzed single archived reduced spectra from 2821 stellar targets taken by the ESO’s HARPS spectroscope to search for potential signatures of lasers from extraterrestrial civilizations. We identified false positives (Section \ref{s:falsepositive}), including cosmic rays (Section \ref{s:cosmic}), bleed through from the Th-Ar calibration lamp (Section \ref{s:bleedthrough}), night sky airglow lines (Section \ref{s:Airglow}), and large clusters of emission lines which are likely the product of natural stellar activity (Section \ref{s:stellaremission}). Of the 2821 stellar spectra we analyzed, we identified 285 Tier 1 candidates with at least one narrow spectral emission feature.  41 of these did not fit any of the above false positive categories, becoming Tier 2 candidates. We filtered this dataset further on the basis of linewidth (Section \ref{s:curvefit}) and analyzed all other HARPS observations of these stars (Section \ref{s:repeat}). We were left with a total of 9 compelling Tier 3 candidates (Section \ref{s:unexplained}). After further investigation, we identified one that could be a faint airglow line (Section \ref{s:airglow_reanalysis}, Tier 4). We then analyzed observations from other stars taken on the same night as each candidate within a two hour window. After shifting these additional spectra into the terrestrial reference frame, we found that four of the surviving candidates originate from unknown sources which are stationary in the telescope's reference frame (See 
