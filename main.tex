@@ -360,12 +360,12 @@ The spike in question only appears once in all 8 observations of HD127423 availa
 
 We can deduce whether these spikes originate from the stars in question, or from a terrestrial source, by considering their Doppler shifts.  When we Doppler-shifted the spectra from the standardized barycentric reference frame into each star's respective stellar reference frame (Figure \ref{fig:stellarframespectra}), we observed that absorption features common to all these stars align, but the spike does not. Thus, the signal is not in the stars' reference frames.  When we Doppler-shifted each spectrum into the {\em terrestrial} observatory's reference frame using the barycentric radial velocity listed in the using the \texttt{HIERARCH ESO DRS BERV} FITS header, we find that the stars' absorption features do not line up, but the mysterious spike does.
 
-\begin{figure}
+\begin{figure*}
     \centering
     \includegraphics[width=\columnwidth]{stellarframespectra.pdf}
     \caption{Reduced spectra for all stars observed by HARPS within +/- 1 hour of the HD127423 candidate at 2013-06-01, 04:16:19.375 (HD127423, HD107181, HD128356, HD126535, HD143120, HD143361 and HD144899).  Each observation shows a spike around 5733~\AA. Top panel: all 7 spectra in the default reference frame for HARPS pipeline (solar system barycenter). Middle panel: all 7 spectra, doppler shifted to the reference frame of each respective star. Bottom panel: all 7 spectra, Doppler shifted into the Earth's reference frame.  The alignment of the 5733{\AA} spikes in the terrestrial reference frame indicates that this is a terrestrial signal, not a stellar feature.}
     \label{fig:stellarframespectra}
-\end{figure}
+\end{figure*}
 
  We confirmed that the spike was in the observatory's reference frame by looking at the raw CCD images, which showed a common spike at the same CCD pixels in all of them.  There was no evidence of CCD ``bleed-through'' at this location, and these features appear at the same pixel position on the CCD images, confirming that there is no doppler shift at all relative to the calibration source. Thus, our analysis suggests that this is an as yet unknown terrestrial source.
 

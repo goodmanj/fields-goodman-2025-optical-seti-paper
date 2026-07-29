@@ -1,0 +1,3 @@
+[submodule "optical_seti"]
+	path = optical_seti-code
+	url = https://github.com/spacetraveller42/optical_seti
