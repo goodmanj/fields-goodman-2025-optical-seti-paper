@@ -1,20 +1,20 @@
 # Fdb version 4
-["bibtex main"] 1793001526.50397 "main.aux" "main.bbl" "main" 1793001528.51361 0
+["bibtex main"] 1793001971.7397 "main.aux" "main.bbl" "main" 1793001973.7518 0
   "./aasjournalv7.bst" 1793001499 38788 af6489f4b275f4b9c2f0b12c5ef4a113 ""
   "./references.bib" 1793001499 77439 531890fdbf976b95076f78be4f3b36be ""
-  "main.aux" 1793001527 19033 172c470d77f73d02a8ecddc37e8ec927 "pdflatex"
+  "main.aux" 1793001973 19034 c912c4fcc59c7b49eb5d58dbecd04a3b "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1793001526.8029 "c:/Users/goodm/OneDrive/Documents/fields-goodman-2025-optical-seti-paper/main.tex" "main.pdf" "main" 1793001528.51426 0
+["pdflatex"] 1793001972.03021 "c:/Users/goodm/OneDrive/Documents/fields-goodman-2025-optical-seti-paper/main.tex" "main.pdf" "main" 1793001973.75224 0
   "Cosmic_ray_multiorder_example.pdf" 1793001499 80020 9dd5c63ecf3e398ebc7adf90ad15ab78 ""
   "HD34642Version3pdf.pdf" 1793001499 92010 ad9b378bca5d4312e7e62bfa8cb183d0 ""
   "HIP87607figureforpaper2.pdf" 1793001499 57812 604f151735488fcd44a2c2f246a11db5 ""
   "aastex701.cls" 1793001499 387395 162019395089b1576c53f45c5fcd0328 ""
   "airglowexample.pdf" 1793001499 31924 1846ab5ba519392080729af2b5d93697 ""
   "bleedthrough.pdf" 1793001499 32337 9bddc86706ae4cffece01152675b6358 ""
-  "c:/Users/goodm/OneDrive/Documents/fields-goodman-2025-optical-seti-paper/main.tex" 1793001499 83597 7279745b7770fd1f7ddc049d4ce67f9f ""
+  "c:/Users/goodm/OneDrive/Documents/fields-goodman-2025-optical-seti-paper/main.tex" 1793001969 83597 8dc35be44d729dfab29ac5dadc6312e9 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1753357025 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1753357581 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/adobe/helvetic/phvr.tfm" 1753357765 2504 ba6584b616b92101c768b6c4ffb32dd0 ""
@@ -38,6 +38,7 @@
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr6.tfm" 1753357017 1300 b62933e007d01cfd073f79b963c01526 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr8.tfm" 1753357017 1292 21c1c5bfeaebccffdb478fd231a0997d ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr9.tfm" 1753357017 1292 6b21b9c2c7bebb38aa2273f7ca0fb3af ""
+  "c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmss8.tfm" 1753357017 1296 d77f431d10d47c8ea2cc18cf45346274 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm" 1753357017 1116 933a60c408fc0a863a92debe84b2d294 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm" 1753357017 1120 8b7d695260f3cff42e636090a8002094 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmsy9.tfm" 1753357017 1116 25a7bf822c58caf309a702ef79f4afbb ""
@@ -65,6 +66,7 @@
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1753356484 32762 7fee39e011c23b3589931effd97b9702 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1753356484 32726 39f0f9e62e84beb801509898a605dbd5 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb" 1753356484 33993 9b89b85fd2d9df0482bd47194d1d3bf3 ""
+  "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb" 1753356484 24420 52dbb8e8aa0069a1b987309557f8d303 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1753356484 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb" 1753356484 32915 7bf7720c61a5b3a7ff25b0964421c9b6 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1753356484 32716 08e384dc442464e7285e891af9f45947 ""
@@ -145,10 +147,10 @@
   "etalonfringesexampleforpaper.pdf" 1793001499 31302 7df9cd8c4359e3867448c3b6967f41a0 ""
   "harps_database_stellar_distances_and_temperatures.pdf" 1793001499 151181 b6e3d01b5fb5b26a5d40d883cc0367fd ""
   "injection_recovery_gridded.pdf" 1793001499 98535 2826054793a0f55c36a5508c6a62f023 ""
-  "main.aux" 1793001527 19033 172c470d77f73d02a8ecddc37e8ec927 "pdflatex"
-  "main.bbl" 1793001526 20357 12ba94f8e8cf5e16d4b88c5622e50f9d "bibtex main"
-  "main.out" 1793001527 7003 90ef04c177e39824dbc2fe0d991cfbae "pdflatex"
-  "main.tex" 1793001499 83597 7279745b7770fd1f7ddc049d4ce67f9f ""
+  "main.aux" 1793001973 19034 c912c4fcc59c7b49eb5d58dbecd04a3b "pdflatex"
+  "main.bbl" 1793001972 20357 12ba94f8e8cf5e16d4b88c5622e50f9d "bibtex main"
+  "main.out" 1793001973 7003 90ef04c177e39824dbc2fe0d991cfbae "pdflatex"
+  "main.tex" 1793001969 83597 8dc35be44d729dfab29ac5dadc6312e9 ""
   "sankey.pdf" 1793001499 135068 a7b53b8b20735bb7e3c29757d84a9fae ""
   "sankey_repeater.pdf" 1793001499 140571 fd137d948118adf6ca6711590d26ee9d ""
   "seti_candidate_GJ317.pdf" 1793001499 56147 7e9b233b54a2d8d6581fc36b3d16453d ""
