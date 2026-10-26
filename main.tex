@@ -1,5 +1,5 @@
-%%\documentclass[twocolumn]{aastex701}
-\documentclass[linenumbers]{aastex701}
+\documentclass[twocolumn]{aastex701}
+%%\documentclass[linenumbers]{aastex701}
 %%\usepackage{graphicx} % Required for inserting images
 \usepackage{url}
 \usepackage{longtable}
@@ -40,7 +40,7 @@ A further motivation to search for lasers is that they have multiple potential a
 \subsection{HARPS: An Ideal Instrument for Optical SETI?}
 This survey uses archival reduced spectra from HARPS (High Accuracy Radial Planet Searcher), a high resolution spectrograph primarily built for exoplanet detection through the radial velocity method \citep{HARPS_specs}. It has a wavelength range of 3780~\AA-6910~\AA, with a gap in coverage between 5300-5330~\AA, and a resolving power of 115,000 (which corresponds to a line-spread function of about .04~\AA~on a .01~\AA~detector grid). The high resolution and large wavelength range of HARPS makes it ideal for searching for narrow band laser emissions. 
 
-Our initial algorithm focused on reduced spectra for the initial search, followed by manual analysis of raw CCD data to minimize the impact of false positives. The HARPS Data Reduction pipeline deblazes the spectra, so the blaze function was not a concern in our initial search. For additional context on the calibration process including dark frame correction, flat fields and bias, please see the HARPS Pipeline User Manual \citep{UserManual}. We note that the pipeline places HARPS reduced spectra in the barycentric reference frame by default. Throughout this document, we quote wavelengths of candidates found at any stage of the analysis in the barycentric reference frame unless explicitly stated otherwise.
+Our initial algorithm focused on reduced, deblazed spectra provided by the HARPS pipeline for the initial search, followed by manual analysis of raw CCD data to identify false positives.  For additional context on the calibration process including dark frame correction, flat fields and bias, please see the HARPS Pipeline User Manual \citep{UserManual}. We note that the pipeline places HARPS reduced spectra in the barycentric reference frame by default. Throughout this document, we quote wavelengths of candidates found at any stage of the analysis in the barycentric reference frame unless explicitly stated otherwise.
   
 \subsection{Target Selection}
 \label{Target_Selection}
@@ -104,7 +104,10 @@ Our algorithm looks for multiple spectral data points in a row that exceed this 
 
 The algorithm also ignores any spikes with more than 500 spectral data points in a row above the threshold. This maximum criterion helps to eliminate natural stellar emission lines, which tend to have wider peaks due to natural spectral line broadening mechanisms (see Section \ref{s:stellaremission}), and prevents spurious \enquote{detections} at the edge of the HARPS instrument's inherent data gap. It also allows for lasers which may be broadened beyond the instrumental minimum, whether by heavy modulation or other technological mechanisms. The 1000-point running median filter used to establish the continuum cannot smooth away spectral features wider than about half the filter width, so our algorithm is insensitive to such wide spikes anyway.  Spikes wider than 4 spectral data points above the threshold but narrower than 500 are flagged as initial potential laser candidates and subjected to further review (See Section \ref{s:falsepositive}). 
 
-\subsubsection{Sensitivity to Random Noise}
+\subsubsection{Sensitivity Testing}
+
+In the example in Figure \ref{fig:threshold}, an observation with a very faint continuum was chosen to highlight the differences between search tactics in a noisy spectrum: this figure does not demonstrate the sensitivity limit of our algorithm.  Figure \ref{fig:seti_candidate_CD-312415} later in the text shows that it is sensitive to spikes that rise 10-12\% above the stellar flux, similar to previous work by \cite{Tellis_2017} and others.
+
 We performed a Monte Carlo test to ensure that our spike-detection algorithm was not sensitive to spikes caused by statistical random noise.  If each HARPS spectral data point were an independent Gaussian random variable, the odds that 4 in a row would reach the Eq. \ref{eq:threshold} threshold with $K=7.5$ would be astronomical.  But because of the instrument's line-spread function (LSF), adjacent data points are not independent: the lag-1 autocorrelation of a typical HARPS spectrum is about 0.84.  We passed Gaussian white noise through a moving-average filter (window width=6) to create 1000 random synthetic datasets with the same length and lag-1 autocorrelation as typical HARPS data.  Our spike detection algorithm registered zero hits on this synthetic dataset, demonstrating its insensitivity to random noise.
 
 \subsection{Automated Airglow Detection}
@@ -123,7 +126,7 @@ For a visual example of an airglow line detected by our automated search tool, s
 \begin{figure*}
     \centering
     \includegraphics[width=.8\textwidth]{airglowexample.pdf}
-    \caption{An example of a commonly recurring airglow line at 5577~\AA~(Observation Date/Time: 2018-02-11, 01:10:40.579). Top panel: reduced spectrum (the red dashed line indicates the spike detected by the automated algorithm). Bottom panel: subsection of the corresponding CCD image for this wavelength range. The stellar spectrum is the green band. At the location of the detected spike, the CCD image shows a visible corresponding bright spot. wavelengths in both the reduced 1-D spectrum and the 2-D CCD image are shown in the terrrestrial (observatory) reference frame.}
+    \caption{An example of a commonly recurring airglow line at 5577~\AA~(Observation Date/Time: 2018-02-11, 01:10:40.579). Top panel: reduced spectrum (the red dashed line indicates the spike detected by the automated algorithm). Bottom panel: subsection of the corresponding CCD image for this wavelength range. The stellar spectrum is the green band. At the location of the detected spike, the CCD image shows a visible corresponding bright spot. Wavelengths in both the reduced 1-D spectrum and the 2-D CCD image are shown in the terrrestrial (observatory) reference frame.}
     \label{fig:airglowexample}
 \end{figure*}
 
@@ -167,7 +170,7 @@ Solving for the transmitter power $L_T$:
 
 For the purposes of this analysis, we assume the laser is powered on for the duration of the exposure time. If the transmitter were pulsed, higher power would be needed, in proportion to the transmitter's duty cycle. 
 
-This calculation does not factor in extinction due to interstellar dust.  \cite{Hippke_2018} estimated power losses due to astronomical dust, quantifying it as $S_E$, or the fraction of photons received across a given interstellar distance. According to \citep{Hippke_2018} becomes a relevant factor ($S_E$ < 0.5)  at distances $>=$ 300 pc. Since a majority of HARPS stellar targets are within 250 pc, we treat this as insignificant.
+This calculation does not factor in extinction due to interstellar dust.  \cite{Hippke_2018} estimated power losses due to astronomical dust, quantifying it as $S_E$, or the fraction of photons received across a given interstellar distance. According to \citep{Hippke_2018} becomes a relevant factor ($S_E< 0.5$)  at distances $>=$ 300 pc. Since a majority of HARPS stellar targets are within 250 pc, we treat this as insignificant.
 
 We use the derivation above to establish minimum detectable power in the following section.
 
@@ -178,15 +181,17 @@ types F,G,K and M, at distances between 3 and 170~pc. We ensured that these obse
 artificial Gaussian spike at a random wavelength, with a FWHM equal to the HARPS spectral
 resolution at that wavelength, and a peak flux (calculated using Eq. \ref{eq:transpower}) corresponding to a random laser power between 500 W and 10 MW and a nominal transmitter aperture of 5~m. We then checked to see if our search algorithm recovered this artificial signal. For each of the 20 stars, we repeated this process 100 times each with random laser powers in five ranges (500 W-1 kW), (1 kW-10 kW), (10 kW-100 kW), (100 kW-1 MW), (1 MW-10 MW). This constituted 500 injections per observation/star, totaling 10,000 separate injection and recoveries across the entire analysis. To ensure uniform wavelength coverage, each set of 100 injections consisted of 50 injected lasers with random wavelengths covering the shorter portion of HARPS' spectral range (3995.00~\AA-5423.19~\AA), and 50 covering the longer portion of HARPS' wavelength range (5423.19~\AA-6850.69~\AA).
 
+We perform our injection analysis on processed spectra rather than raw CCD images.  To test whether de-blazing and other pipeline steps cause the flux values in the processed spectra to differ from the raw number of quanta detected by the CCD, we compared the integrated flux values in a small region of a handful of raw CCD images against the same region in their processed spectra.  We found that the processing steps change the integrated count values by only -15/+30\% near the center/edge of a typical HARPS CCD image.  Thus we are justified in using the processed spectra for this order-of-magnitude injection test. 
+
 \begin{figure*}
     \centering  \includegraphics[width=.8\textwidth]{injection_recovery_gridded.pdf}
     \caption{Results of our signal injection/recovery test. Each dot represents an artificial laser-like spike with a randomly-chosen laser power, injected into HARPS spectra of stars of various types and distances.  Green crosses indicate that the artificial signal was recovered by our algorithm, while grey dots indicate a null detection. The color of the shaded boxes indicates the percentage of injected signals recovered within that box.  The black diagonal line represents the slope of an inverse square law, correlating closely to signal recovery as a function of distance.}
     \label{fig:injection_recovery_results}
 \end{figure*}
 
-Figure \ref{fig:injection_recovery_results} shows that the vast majority of artificial injected signals are recovered by our search algorithm at high laser power or short distances. As expected, injected signals with low amplitude (large distance, small power) are difficult to detect. The detection threshold is not far from an inverse square law, though the threshold also varies from star to star.
+Figure \ref{fig:injection_recovery_results} shows that the vast majority of artificial injected signals are recovered by our search algorithm at high laser power or short distances. As expected, injected signals with low amplitude (large distance, small power) are difficult to detect. The detection threshold is not far from an inverse square law, though the threshold also varies from star to star.  
 
-Quantitatively, we found that we can detect injected signals with simulated powers of 500 Watts - 1 Kilowatt under 10 pc, with a recovery rate of almost 90\%. At between 10 and 100~pc, the required input power ranges from 10-100 kilowatts. At a distance of  100~pc or more, lasers need ~1 MW or greater of brightness to be detectable. Distance is not the only factor: detectability does vary between stars of different distances.  However, the recovery rate showed no obvious dependence on the spectral type of the background star. There was also no observable wavelength bias, indicating our algorithm could effectively recover lasers across the entire spectrum.
+Quantitatively, we found that we can detect injected signals with simulated powers of 500 Watts - 1 Kilowatt under 10 pc, with a recovery rate of almost 90\%. At between 10 and 100 pc, the required input power ranges from 10-100 kilowatts. At a distance of  100~pc or more, lasers need $\sim$ 1 MW or greater of brightness to be detectable. Distance is not the only factor: detectability does vary between stars of different distances.  However, the recovery rate showed no obvious dependence on the spectral type of the background star. There was also no observable wavelength bias, indicating our algorithm could effectively recover lasers across the entire spectrum.
 
 For most targets in this survey, our method is sensitive enough to detect lasers that could be built with current human technology \citep{Lander1997ContinuouswaveCD}.
 
@@ -231,7 +236,7 @@ Figure \ref{fig:Cosmic_ray_example} shows an example of a cosmic ray detection, 
 \begin{figure*}
     \centering
     \includegraphics[width=.8\textwidth]{bleedthrough.pdf}
-    \caption{An example of calibration lamp bleed-through (Observation Date/Time: 2013-04-30, 09:50:45.212). Top panel: reduced spectrum, bottom panel: raw CCD image. The upper band of bright spots in the CCD image is from the calibration lamp; the lower band is starlight.  Charge from an oversaturated emission line in the calibration lamp has bled across to contaminate the stellar spectrum. wavelengths in both the reduced 1-D spectrum and the 2-D CCD image are shown in the terrrestrial (observatory) reference frame.}
+    \caption{An example of calibration lamp bleed-through (Observation Date/Time: 2013-04-30, 09:50:45.212). Top panel: reduced spectrum, bottom panel: raw CCD image. The upper band of bright spots in the CCD image is from the calibration lamp; the lower band is starlight.  Charge from an oversaturated emission line in the calibration lamp has bled across to contaminate the stellar spectrum. Wavelengths in both the reduced 1-D spectrum and the 2-D CCD image are shown in the terrrestrial (observatory) reference frame.}
     \label{fig:bleedthrough}
 \end{figure*}
 
@@ -242,7 +247,7 @@ Additionally, we noted another likely instrumental artifact--a series of closely
 \begin{figure*}
     \centering
     \includegraphics[width=0.8\textwidth]{etalonfringesexampleforpaper.pdf}
-    \caption{An example of a recurrent instrumental artifact, possibly indicative of internal reflections forming an interference pattern (Observation Date/Time: 2017-01-14, 02:04:35.597). Top panel: reduced spectrum, bottom panel: raw CCD image. wavelengths in both the reduced 1-D spectrum and the 2-D CCD image are shown in the terrrestrial (observatory) reference frame.}
+    \caption{An example of a recurrent instrumental artifact, possibly indicative of internal reflections forming an interference pattern (Observation Date/Time: 2017-01-14, 02:04:35.597). Top panel: reduced spectrum, bottom panel: raw CCD image. Wavelengths in both the reduced 1-D spectrum and the 2-D CCD image are shown in the terrrestrial (observatory) reference frame.}
     \label{fig:interferencepattern}
 \end{figure*}
 
@@ -263,7 +268,7 @@ For an example of a spectrum which matches our criteria for natural stellar emis
      \begin{overpic}[width=.8\textwidth]{eruptivevariablestar.pdf}
      \put(48,30){\textcolor{red}{Star: GJ 234}}
     \end{overpic}
-    \caption{Reduced spectrum of an eruptive variable star, GJ 234. Numerous spikes are visible, as is typical of natural stellar emission-line activity from eruptive stars like this one.  Inset: Zoom-in on one of approximately 10 spikes observed from this star. These emission features are much broader than the HARPS instrument's line-spread function, as is typical of natural stellar emission lines. wavelengths in both the reduced 1-D spectrum and the 2-D CCD image are shown in the terrrestrial (observatory) reference frame.}
+    \caption{Reduced spectrum of an eruptive variable star, GJ 234. Numerous spikes are visible, as is typical of natural stellar emission-line activity from eruptive stars like this one.  Inset: Zoom-in on one of approximately 10 spikes observed from this star. These emission features are much broader than the HARPS instrument's line-spread function, as is typical of natural stellar emission lines. Wavelengths in both the reduced 1-D spectrum and the 2-D CCD image are shown in the terrrestrial (observatory) reference frame.}
     \label{fig:eruptivevariablestar}
 \end{figure*}
 
@@ -294,7 +299,7 @@ We used \texttt{scipy.optimize.curve\_fit()} \citep{2020SciPy-NMeth} to fit a Ga
     \label{eq:fit}
 \end{equation}
 
-To ensure the curve-fitting tool fit a Gaussian to our spike and not to the continuum or other spectral features, we took the following steps.  First, we fit a Gaussian curve \emph{plus a constant}. This is to ensure that the Gaussian curve fit measures the excess flux and not the continuum, by raising the baseline to the continuum's level. To ensure that the continuum constant $y_0$ accurately represented the continuum, we required that it lie within the minimum and maximum range of the data in the fitting window, with the midpoint as an initial guess. We required that the central wavelength $\lambda_0$ of the Gaussian fit lie within this data window, using the central wavelength of our detected spike as an initial guess. We then clipped the data to a window within $\pm$1~\AA~of the center of our detected spike. The 1~\AA window was chosen to be sufficiently wide to accurately represent the continuum, without allowing in an overabundance of other spikes and absorption features which could confuse it. %Note to Jason: This can prob be worded better. Have at it!
+To ensure the curve-fitting tool fit a Gaussian to our spike and not to the continuum or other spectral features, we took the following steps.  First, we fit a Gaussian curve \emph{plus a constant}. This is to ensure that the Gaussian curve fit measures the excess flux and not the continuum, by raising the baseline to the continuum's level. To ensure that the continuum constant $y_0$ accurately represented the continuum, we required that it lie within the minimum and maximum range of the data in the fitting window, with the midpoint as an initial guess. We required that the central wavelength $\lambda_0$ of the Gaussian fit lie within this data window, using the central wavelength of our detected spike as an initial guess. We then clipped the data to a window within $\pm$1~\AA~of the center of our detected spike. The 1~\AA~window was chosen to be sufficiently wide to accurately represent the continuum, without allowing in an overabundance of other spikes and absorption features which could confuse it. %Note to Jason: This can prob be worded better. Have at it!
 We required that the amplitude $A$ of the Gaussian be positive, using the range of the windowed data as an initial guess. The positive amplitude requirement ensures that the curve fits exclusively to the candidate spike, and not any nearby absorption features. Finally, we required that the width $\sigma$ of the Gaussian be between zero and 1/2 the width of the data window, using 1/6 of the width of the data window as an initial guess.  This initial guess is somewhat wider than the narrow features we are trying to fit: this improves convergence of the curve-fitting algorithm by casting a wider net to find the spike.
 
 The algorithm uses a \enquote{goodness of fit} parameter and multiple successive fits to converge on an accurate linewidth fit. Ideally, if the best-fit width of a spike is greater than or equal to the instrument's LSF, the candidate is likelier to be a genuine SETI detection. Otherwise, the candidate signal possibly originates from within the instrument and is therefore likelier to be a cosmic ray or instrumental artifact. In practice, instrumental noise and nearby absorption features add uncertainty and possible bias to the best-fit linewidth, so a strict cut-off at the instrument's LSF could lead to false categorizations.
@@ -306,7 +311,7 @@ We accounted for this by comparing Gaussian curve-fitting statistics for three c
     \item Simulated spikes which we injected into the 1-D spectra using the same technique as \ref{s:injection_and_recovery}.  These injected signals have known Gaussian line widths that can be compared to the output of our curve-fitting algorithm.  We only fed injected spikes into the curve fitting algorithm that were strong enough to be successfully recovered by our Tier 1 search tool. 
 \end{enumerate}
 
-We used these populations to establish a margin of error for our line width criterion -- a difference between the measured FWHM and the FWHM predicted by \ref{eq:LSF} over which a majority of \enquote{real} spikes and airglow lines would be accepted, while below which sufficiently narrow cosmic rays would be rejected.
+We used these populations to establish a margin of error for our line width criterion -- a difference between the measured FWHM and the FWHM predicted by Equation \ref{eq:LSF} over which a majority of \enquote{real} spikes and airglow lines would be accepted, while below which sufficiently narrow cosmic rays would be rejected.
 
 Of 339 spikes manually identified as cosmic rays, 243 (72\%) had best-fit line widths below the instrument's LSF.  Of 1,204 spikes matching the wavelengths of airglow lines, 211 (18\%) had best-fit line widths below the predicted FWHM, with the rest exceeding it.  Of the 4,699 injected gaussian spikes, 1,604 (34\%) had best-fit line widths below the predicted FWHM.  Since a considerable number of airglow lines and injected Gaussians -- our positive controls -- had best-fit FWHMs that fell below the LSF, a less strict cutoff is needed, one that includes a margin of error.  We observed that only 1.5\% of the injected Gaussian signals had a best-fit FWHM  that was less than the true injected FWHM minus 0.003~\AA.  
 
@@ -345,7 +350,7 @@ One Tier 3 candidate, a spike at 5732.945~\AA~in an observation of HD 127423 dat
      \begin{overpic}[width=.8\textwidth]{seti_candidate_HD127423.pdf}
      \put(75,40){\textcolor{red}{Star: HD 127423}}  % adjust (x,y) % coordinates
     \end{overpic}
-    \caption{Star: HD 127423, Spectral Type:G0V, Observation Date/Time: 2013-06-01, 04:16:19.375. Top panel: reduced spectrum.  Bottom panel: subsection of the corresponding CCD image for this wavelength range. wavelengths in both the reduced 1-D spectrum and the 2-D CCD image are shown in the terrrestrial (observatory) reference frame.}
+    \caption{Star: HD 127423, Spectral Type:G0V, Observation Date/Time: 2013-06-01, 04:16:19.375. Top panel: reduced spectrum.  Bottom panel: subsection of the corresponding CCD image for this wavelength range. Wavelengths in both the reduced 1-D spectrum and the 2-D CCD image are shown in the terrrestrial (observatory) reference frame.}
     \label{fig:seti_candidate_HD 127423}
 \end{figure*}
 
@@ -502,7 +507,7 @@ Of 696 additional observations of these 17 stars, our automated search algorithm
     \label{fig:candidate_wavelengths}
 \end{figure}
 
-While some stars had candidate spikes in several different observations, they were almost always at very different wavelengths, hundreds of angstroms apart (Figure \ref{fig:candidate_wavelengths}).  The closest pair of spikes (separated by .07~\AA) is not a recurring feature, but a closely spaced  double spike from the same observation time. The second-closest is in CoRot-24: two observations of CoRot-24 at 5552.13~\AA and 5553.72~\AA~on 2011-12-04 at 05:29:17.513 and 01:46:11.545 respectively.  These are separated by 1.6~\AA.  If these were the same source observed at two different Doppler shifts, the relative velocity of source and receiver would need to change by 44 km/s in 4 hours. Whether this is the same source or just coincidence will be the subject of future work. Several  other stars (CD-4911401, GJ 317, WASP-19, GJ 1214, HIP 87607, CoRot  101614469, CoRot  22169962) showed additional candidates in subsequent observations--but none which repeated at the same wavelength as the initial detection. 
+While some stars had candidate spikes in several different observations, they were almost always at very different wavelengths, hundreds of angstroms apart (Figure \ref{fig:candidate_wavelengths}).  The closest pair of spikes (separated by .07~\AA) is not a recurring feature, but a closely spaced  double spike from the same observation time. The second-closest is in CoRot-24: two observations of CoRot-24 at 5552.13~\AA~and 5553.72~\AA~on 2011-12-04 at 05:29:17.513 and 01:46:11.545 respectively.  These are separated by 1.6~\AA.  If these were the same source observed at two different Doppler shifts, the relative velocity of source and receiver would need to change by 44 km/s in 4 hours. Whether this is the same source or just coincidence will be the subject of future work. Several  other stars (CD-4911401, GJ 317, WASP-19, GJ 1214, HIP 87607, CoRot  101614469, CoRot  22169962) showed additional candidates in subsequent observations--but none which repeated at the same wavelength as the initial detection. 
 
 \section{Summary and Conclusions}
 We analyzed single archived reduced spectra from 2821 stellar targets taken by the ESO’s HARPS spectroscope to search for potential signatures of lasers from extraterrestrial civilizations. We identified false positives (Section \ref{s:falsepositive}), including cosmic rays (Section \ref{s:cosmic}), bleed through from the Th-Ar calibration lamp (Section \ref{s:bleedthrough}), night sky airglow lines (Section \ref{s:Airglow}), and large clusters of emission lines which are likely the product of natural stellar activity (Section \ref{s:stellaremission}). Of the 2821 stellar spectra we analyzed, we identified 508 Tier 1 candidates with at least one narrow spectral emission feature.  64 of these did not fit any of the above false positive categories, becoming Tier 2 candidates. We filtered this dataset further on the basis of linewidth (Section \ref{s:curvefit}). We were left with a total of 42 compelling Tier 3 candidates (Section \ref{s:results}). We then looked for terrestrial interference by comparing each candidate to observations of other stars taken within a four hour window, looking for matching spikes in the terrestrial reference frame.  This eliminated 17 candidates as likely terrestrial interference (Section \ref{s:doppler}). Although the 17 spikes we eliminated are definitely terrestrial in origin, their cause is unknown.  The multi hour window during which they appeared argues against a laser from a classified satellite in Low Earth Orbit. They also might represent novel atmospheric phenomena and could be of interest to meteorologists. This left 22 Tier 4 candidates which passed through all of our filters for prosaic explanations and currently show no indication of being terrestrial in origin, and therefore warrant further investigation as SETI candidates. To search for any repeat occurrences of candidate signals, we searched the available additional observations of any star that yielded a Tier 4 candidate, totaling 696 additional spectra. These \enquote{repeater} candidates were subjected to all of the same false positive filters as our initial candidates, yielding an additional 44 candidates for a total of 66. One observation of M-dwarf star CoRot-24 yielded two spikes in separate observations only 1.6~\AA~apart in wavelength. Whether this is an example of a repeating signal or just coincidence will be the subject of additional followup analysis. All of the other additional unexplained spikes uncovered in the search for repeat occurences showed up at very different wavelengths. However, regardless of their transient and non-repeating nature, all of our final candidates survived a battery of tests which eliminated many natural and anthropogenic false positives. Therefore, they warrant further investigation.
@@ -689,6 +694,423 @@ WASP-89 & K3 & 6560.970 & 2013-06-15 05:49:59.413 \\
 \end{longtable}
 \onecolumngrid
 \clearpage
+
+\section{Online Figure Set: CCD and spectra of all Tier 4 Candidates.}
+\label{s:figure_set}
+Figure \ref{fig:figure_set} shows the spectrum and CCD image data for one of the Tier 4 candidates identified in follow-up observations described in Section \ref{s:repeat}.  A figure set showing similar figures for all Tier 4 candidates is available in the online journal.
+
+\begin{figure*}[h]
+    \centering
+    \includegraphics[width=.8\textwidth]{GJ1214_2009-08-23T23_07_36.179_6004.pdf}
+    \caption{Star: GJ-1214, Observation Date/Time: 2009-08-23 23:07:36.179. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+    \label{fig:figure_set}
+\end{figure*}
+\figsetstart
+\figsetnum{17}
+\figsettitle{{All Tier 4 Candidates}}
+\figsetgrpstart
+\figsetgrpnum{17.1}
+\figsetgrptitle{BD-114672_2023-06-03T09_09_16.351_6477}
+\figsetplot{BD-114672_2023-06-03T09_09_16.351_6477.pdf}
+\figsetgrpnote{Star: BD-114672, Observation Date/Time: 2023-06-03 09:09:16. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.2}
+\figsetgrptitle{CD-4911401_2005-05-10T04_34_42.474_6093}
+\figsetplot{CD-4911401_2005-05-10T04_34_42.474_6093.pdf}
+\figsetgrpnote{Star: CD-4911401, Observation Date/Time: 2005-05-10 04:34:42. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.3}
+\figsetgrptitle{CoRoT-24_2009-11-28T06_10_56.607_6786}
+\figsetplot{CoRoT-24_2009-11-28T06_10_56.607_6786.pdf}
+\figsetgrpnote{Star: CoRoT-24, Observation Date/Time: 2009-11-28 06:10:56. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.4}
+\figsetgrptitle{CoRoT-24_2010-02-12T01_24_19.113_5723}
+\figsetplot{CoRoT-24_2010-02-12T01_24_19.113_5723.pdf}
+\figsetgrpnote{Star: CoRoT-24, Observation Date/Time: 2010-02-12 01:24:19. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.5}
+\figsetgrptitle{CoRoT-24_2010-02-17T03_34_56.067_6160}
+\figsetplot{CoRoT-24_2010-02-17T03_34_56.067_6160.pdf}
+\figsetgrpnote{Star: CoRoT-24, Observation Date/Time: 2010-02-17 03:34:56. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.6}
+\figsetgrptitle{CoRoT-24_2011-11-08T07_17_18.816_6799}
+\figsetplot{CoRoT-24_2011-11-08T07_17_18.816_6799.pdf}
+\figsetgrpnote{Star: CoRoT-24, Observation Date/Time: 2011-11-08 07:17:18. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.7}
+\figsetgrptitle{CoRoT-24_2011-11-23T05_50_42.823_4712}
+\figsetplot{CoRoT-24_2011-11-23T05_50_42.823_4712.pdf}
+\figsetgrpnote{Star: CoRoT-24, Observation Date/Time: 2011-11-23 05:50:42. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.8}
+\figsetgrptitle{CoRoT-24_2011-11-23T05_50_42.823_5779}
+\figsetplot{CoRoT-24_2011-11-23T05_50_42.823_5779.pdf}
+\figsetgrpnote{Star: CoRoT-24, Observation Date/Time: 2011-11-23 05:50:42. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.9}
+\figsetgrptitle{CoRoT-24_2011-11-24T04_34_33.827_6781}
+\figsetplot{CoRoT-24_2011-11-24T04_34_33.827_6781.pdf}
+\figsetgrpnote{Star: CoRoT-24, Observation Date/Time: 2011-11-24 04:34:33. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.10}
+\figsetgrptitle{CoRoT-24_2011-11-26T05_55_33.755_6676}
+\figsetplot{CoRoT-24_2011-11-26T05_55_33.755_6676.pdf}
+\figsetgrpnote{Star: CoRoT-24, Observation Date/Time: 2011-11-26 05:55:33. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.11}
+\figsetgrptitle{CoRoT-24_2011-12-04T05_29_17.513_5552}
+\figsetplot{CoRoT-24_2011-12-04T05_29_17.513_5552.pdf}
+\figsetgrpnote{Star: CoRoT-24, Observation Date/Time: 2011-12-04 05:29:17. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.12}
+\figsetgrptitle{CoRoT-24_2011-12-04T05_29_17.513_5948}
+\figsetplot{CoRoT-24_2011-12-04T05_29_17.513_5948.pdf}
+\figsetgrpnote{Star: CoRoT-24, Observation Date/Time: 2011-12-04 05:29:17. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.13}
+\figsetgrptitle{CoRoT-24_2011-12-05T04_42_05.773_6039}
+\figsetplot{CoRoT-24_2011-12-05T04_42_05.773_6039.pdf}
+\figsetgrpnote{Star: CoRoT-24, Observation Date/Time: 2011-12-05 04:42:05. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.14}
+\figsetgrptitle{CoRoT-24_2012-01-14T04_55_44.391_5861}
+\figsetplot{CoRoT-24_2012-01-14T04_55_44.391_5861.pdf}
+\figsetgrpnote{Star: CoRoT-24, Observation Date/Time: 2012-01-14 04:55:44. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.15}
+\figsetgrptitle{CoRoT-24_2012-01-16T01_46_11.545_5553}
+\figsetplot{CoRoT-24_2012-01-16T01_46_11.545_5553.pdf}
+\figsetgrpnote{Star: CoRoT-24, Observation Date/Time: 2012-01-16 01:46:11. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.16}
+\figsetgrptitle{CoRoT-24_2012-01-18T04_23_59.478_5819}
+\figsetplot{CoRoT-24_2012-01-18T04_23_59.478_5819.pdf}
+\figsetgrpnote{Star: CoRoT-24, Observation Date/Time: 2012-01-18 04:23:59. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.17}
+\figsetgrptitle{CoRoT-24_2012-01-19T01_47_54.198_6822}
+\figsetplot{CoRoT-24_2012-01-19T01_47_54.198_6822.pdf}
+\figsetgrpnote{Star: CoRoT-24, Observation Date/Time: 2012-01-19 01:47:54. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.18}
+\figsetgrptitle{CoRoT-24_2012-01-22T04_12_46.138_6252}
+\figsetplot{CoRoT-24_2012-01-22T04_12_46.138_6252.pdf}
+\figsetgrpnote{Star: CoRoT-24, Observation Date/Time: 2012-01-22 04:12:46. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.19}
+\figsetgrptitle{CoRoT-24_2012-01-25T01_49_25.109_6488}
+\figsetplot{CoRoT-24_2012-01-25T01_49_25.109_6488.pdf}
+\figsetgrpnote{Star: CoRoT-24, Observation Date/Time: 2012-01-25 01:49:25. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.20}
+\figsetgrptitle{CoRoT-24_2012-11-17T04_56_35.576_5045}
+\figsetplot{CoRoT-24_2012-11-17T04_56_35.576_5045.pdf}
+\figsetgrpnote{Star: CoRoT-24, Observation Date/Time: 2012-11-17 04:56:35. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.21}
+\figsetgrptitle{CoRoT-24_2012-11-20T05_56_02.541_5983}
+\figsetplot{CoRoT-24_2012-11-20T05_56_02.541_5983.pdf}
+\figsetgrpnote{Star: CoRoT-24, Observation Date/Time: 2012-11-20 05:56:02. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.22}
+\figsetgrptitle{CoRoT-24_2012-11-24T06_04_07.004_5447}
+\figsetplot{CoRoT-24_2012-11-24T06_04_07.004_5447.pdf}
+\figsetgrpnote{Star: CoRoT-24, Observation Date/Time: 2012-11-24 06:04:07. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.23}
+\figsetgrptitle{CoRoT-24_2012-11-24T06_04_07.004_5832}
+\figsetplot{CoRoT-24_2012-11-24T06_04_07.004_5832.pdf}
+\figsetgrpnote{Star: CoRoT-24, Observation Date/Time: 2012-11-24 06:04:07. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.24}
+\figsetgrptitle{CoRoT-32_2012-01-27T02_14_50.135_6173}
+\figsetplot{CoRoT-32_2012-01-27T02_14_50.135_6173.pdf}
+\figsetgrpnote{Star: CoRoT-32, Observation Date/Time: 2012-01-27 02:14:50. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.25}
+\figsetgrptitle{CoRoT101614469_2008-07-25T04_50_31.896_4534}
+\figsetplot{CoRoT101614469_2008-07-25T04_50_31.896_4534.pdf}
+\figsetgrpnote{Star: CoRoT101614469, Observation Date/Time: 2008-07-25 04:50:31. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.26}
+\figsetgrptitle{CoRoT101614469_2008-07-25T04_50_31.896_5593}
+\figsetplot{CoRoT101614469_2008-07-25T04_50_31.896_5593.pdf}
+\figsetgrpnote{Star: CoRoT101614469, Observation Date/Time: 2008-07-25 04:50:31. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.27}
+\figsetgrptitle{CoRoT101614469_2008-07-30T02_36_24.607_6689}
+\figsetplot{CoRoT101614469_2008-07-30T02_36_24.607_6689.pdf}
+\figsetgrpnote{Star: CoRoT101614469, Observation Date/Time: 2008-07-30 02:36:24. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.28}
+\figsetgrptitle{CoRoT221699621_2011-02-24T00_46_36.187_6416}
+\figsetplot{CoRoT221699621_2011-02-24T00_46_36.187_6416.pdf}
+\figsetgrpnote{Star: CoRoT221699621, Observation Date/Time: 2011-02-24 00:46:36. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.29}
+\figsetgrptitle{CoRoT221699621_2011-12-02T06_21_36.140_6716}
+\figsetplot{CoRoT221699621_2011-12-02T06_21_36.140_6716.pdf}
+\figsetgrpnote{Star: CoRoT221699621, Observation Date/Time: 2011-12-02 06:21:36. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.30}
+\figsetgrptitle{CoRoT221699621_2011-12-03T06_43_16.408_5446}
+\figsetplot{CoRoT221699621_2011-12-03T06_43_16.408_5446.pdf}
+\figsetgrpnote{Star: CoRoT221699621, Observation Date/Time: 2011-12-03 06:43:16. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.31}
+\figsetgrptitle{GJ1214_2009-07-26T00_32_36.836_6113}
+\figsetplot{GJ1214_2009-07-26T00_32_36.836_6113.pdf}
+\figsetgrpnote{Star: GJ1214, Observation Date/Time: 2009-07-26 00:32:36. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.32}
+\figsetgrptitle{GJ1214_2009-08-05T00_48_08.218_3972}
+\figsetplot{GJ1214_2009-08-05T00_48_08.218_3972.pdf}
+\figsetgrpnote{Star: GJ1214, Observation Date/Time: 2009-08-05 00:48:08. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.33}
+\figsetgrptitle{GJ1214_2009-08-23T23_07_36.179_6004}
+\figsetplot{GJ1214_2009-08-23T23_07_36.179_6004.pdf}
+\figsetgrpnote{Star: GJ1214, Observation Date/Time: 2009-08-23 23:07:36. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.34}
+\figsetgrptitle{GJ1214_2009-09-03T23_26_05.655_4527}
+\figsetplot{GJ1214_2009-09-03T23_26_05.655_4527.pdf}
+\figsetgrpnote{Star: GJ1214, Observation Date/Time: 2009-09-03 23:26:05. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.35}
+\figsetgrptitle{GJ1214_2012-07-10T00_39_39.961_4784}
+\figsetplot{GJ1214_2012-07-10T00_39_39.961_4784.pdf}
+\figsetgrpnote{Star: GJ1214, Observation Date/Time: 2012-07-10 00:39:39. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.36}
+\figsetgrptitle{GJ1214_2012-07-13T00_55_14.696_3897}
+\figsetplot{GJ1214_2012-07-13T00_55_14.696_3897.pdf}
+\figsetgrpnote{Star: GJ1214, Observation Date/Time: 2012-07-13 00:55:14. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.37}
+\figsetgrptitle{GJ1214_2012-09-02T00_18_54.276_4076}
+\figsetplot{GJ1214_2012-09-02T00_18_54.276_4076.pdf}
+\figsetgrpnote{Star: GJ1214, Observation Date/Time: 2012-09-02 00:18:54. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.38}
+\figsetgrptitle{GJ1214_2012-09-21T23_44_14.907_5804}
+\figsetplot{GJ1214_2012-09-21T23_44_14.907_5804.pdf}
+\figsetgrpnote{Star: GJ1214, Observation Date/Time: 2012-09-21 23:44:14. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.39}
+\figsetgrptitle{GJ1214_2019-07-15T03_32_39.231_4629}
+\figsetplot{GJ1214_2019-07-15T03_32_39.231_4629.pdf}
+\figsetgrpnote{Star: GJ1214, Observation Date/Time: 2019-07-15 03:32:39. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.40}
+\figsetgrptitle{GJ1214_2019-09-02T01_26_36.055_5432}
+\figsetplot{GJ1214_2019-09-02T01_26_36.055_5432.pdf}
+\figsetgrpnote{Star: GJ1214, Observation Date/Time: 2019-09-02 01:26:36. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.41}
+\figsetgrptitle{GJ1236_2012-05-15T07_27_46.968_5975}
+\figsetplot{GJ1236_2012-05-15T07_27_46.968_5975.pdf}
+\figsetgrpnote{Star: GJ1236, Observation Date/Time: 2012-05-15 07:27:46. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.42}
+\figsetgrptitle{GJ3053_2016-01-23T01_11_31.273_3854}
+\figsetplot{GJ3053_2016-01-23T01_11_31.273_3854.pdf}
+\figsetgrpnote{Star: GJ3053, Observation Date/Time: 2016-01-23 01:11:31. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.43}
+\figsetgrptitle{GJ317_2018-04-10T03_25_08.275_4662}
+\figsetplot{GJ317_2018-04-10T03_25_08.275_4662.pdf}
+\figsetgrpnote{Star: GJ317, Observation Date/Time: 2018-04-10 03:25:08. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.44}
+\figsetgrptitle{GJ317_2018-06-01T22_30_16.020_6643}
+\figsetplot{GJ317_2018-06-01T22_30_16.020_6643.pdf}
+\figsetgrpnote{Star: GJ317, Observation Date/Time: 2018-06-01 22:30:16. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.45}
+\figsetgrptitle{GJ3221_2011-09-25T07_25_30.812_6688}
+\figsetplot{GJ3221_2011-09-25T07_25_30.812_6688.pdf}
+\figsetgrpnote{Star: GJ3221, Observation Date/Time: 2011-09-25 07:25:30. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.46}
+\figsetgrptitle{GJ3535_2004-05-31T00_36_26.077_6769}
+\figsetplot{GJ3535_2004-05-31T00_36_26.077_6769.pdf}
+\figsetgrpnote{Star: GJ3535, Observation Date/Time: 2004-05-31 00:36:26. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.47}
+\figsetgrptitle{HD110411_2006-02-10T07_02_59.081_5709}
+\figsetplot{HD110411_2006-02-10T07_02_59.081_5709.pdf}
+\figsetgrpnote{Star: HD110411, Observation Date/Time: 2006-02-10 07:02:59. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.48}
+\figsetgrptitle{HD147644_2015-04-19T06_48_21.114_5937}
+\figsetplot{HD147644_2015-04-19T06_48_21.114_5937.pdf}
+\figsetgrpnote{Star: HD147644, Observation Date/Time: 2015-04-19 06:48:21. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.49}
+\figsetgrptitle{HD184711_2008-09-20T00_41_44.834_6566}
+\figsetplot{HD184711_2008-09-20T00_41_44.834_6566.pdf}
+\figsetgrpnote{Star: HD184711, Observation Date/Time: 2008-09-20 00:41:44. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.50}
+\figsetgrptitle{HD197623_2005-05-18T09_10_45.139_6351}
+\figsetplot{HD197623_2005-05-18T09_10_45.139_6351.pdf}
+\figsetgrpnote{Star: HD197623, Observation Date/Time: 2005-05-18 09:10:45. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.51}
+\figsetgrptitle{HD223171_2015-12-16T01_26_43.087_6769}
+\figsetplot{HD223171_2015-12-16T01_26_43.087_6769.pdf}
+\figsetgrpnote{Star: HD223171, Observation Date/Time: 2015-12-16 01:26:43. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.52}
+\figsetgrptitle{HD34642_2018-02-01T01_42_30.839_5769}
+\figsetplot{HD34642_2018-02-01T01_42_30.839_5769.pdf}
+\figsetgrpnote{Star: HD34642, Observation Date/Time: 2018-02-01 01:42:30. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.53}
+\figsetgrptitle{HD59088_2006-03-26T00_02_33.378_4365}
+\figsetplot{HD59088_2006-03-26T00_02_33.378_4365.pdf}
+\figsetgrpnote{Star: HD59088, Observation Date/Time: 2006-03-26 00:02:33. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.54}
+\figsetgrptitle{HIP60910_2019-02-17T08_19_27.734_4305}
+\figsetplot{HIP60910_2019-02-17T08_19_27.734_4305.pdf}
+\figsetgrpnote{Star: HIP60910, Observation Date/Time: 2019-02-17 08:19:27. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.55}
+\figsetgrptitle{HIP87607_2012-10-22T23_39_09.238_4632}
+\figsetplot{HIP87607_2012-10-22T23_39_09.238_4632.pdf}
+\figsetgrpnote{Star: HIP87607, Observation Date/Time: 2012-10-22 23:39:09. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.56}
+\figsetgrptitle{HIP87607_2013-07-24T02_37_41.553_5674}
+\figsetplot{HIP87607_2013-07-24T02_37_41.553_5674.pdf}
+\figsetgrpnote{Star: HIP87607, Observation Date/Time: 2013-07-24 02:37:41. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.57}
+\figsetgrptitle{WASP-19_2010-03-19T04_02_37.912_5948}
+\figsetplot{WASP-19_2010-03-19T04_02_37.912_5948.pdf}
+\figsetgrpnote{Star: WASP-19, Observation Date/Time: 2010-03-19 04:02:37. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.58}
+\figsetgrptitle{WASP-19_2010-03-19T05_41_10.913_6859}
+\figsetplot{WASP-19_2010-03-19T05_41_10.913_6859.pdf}
+\figsetgrpnote{Star: WASP-19, Observation Date/Time: 2010-03-19 05:41:10. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.59}
+\figsetgrptitle{WASP-19_2017-05-09T00_23_21.566_5988}
+\figsetplot{WASP-19_2017-05-09T00_23_21.566_5988.pdf}
+\figsetgrpnote{Star: WASP-19, Observation Date/Time: 2017-05-09 00:23:21. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.60}
+\figsetgrptitle{WASP-19_2020-02-14T03_38_48.531_4245}
+\figsetplot{WASP-19_2020-02-14T03_38_48.531_4245.pdf}
+\figsetgrpnote{Star: WASP-19, Observation Date/Time: 2020-02-14 03:38:48. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.61}
+\figsetgrptitle{WASP-19_2020-02-15T04_09_40.886_6054}
+\figsetplot{WASP-19_2020-02-15T04_09_40.886_6054.pdf}
+\figsetgrpnote{Star: WASP-19, Observation Date/Time: 2020-02-15 04:09:40. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.62}
+\figsetgrptitle{WASP-89_2012-10-03T03_54_35.331_4925}
+\figsetplot{WASP-89_2012-10-03T03_54_35.331_4925.pdf}
+\figsetgrpnote{Star: WASP-89, Observation Date/Time: 2012-10-03 03:54:35. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.63}
+\figsetgrptitle{WASP-89_2012-10-03T05_01_01.142_5198}
+\figsetplot{WASP-89_2012-10-03T05_01_01.142_5198.pdf}
+\figsetgrpnote{Star: WASP-89, Observation Date/Time: 2012-10-03 05:01:01. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.64}
+\figsetgrptitle{WASP-89_2013-06-15T05_34_26.988_5939}
+\figsetplot{WASP-89_2013-06-15T05_34_26.988_5939.pdf}
+\figsetgrpnote{Star: WASP-89, Observation Date/Time: 2013-06-15 05:34:26. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.65}
+\figsetgrptitle{WASP-89_2013-06-15T05_49_59.413_6560}
+\figsetplot{WASP-89_2013-06-15T05_49_59.413_6560.pdf}
+\figsetgrpnote{Star: WASP-89, Observation Date/Time: 2013-06-15 05:49:59. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.66}
+\figsetgrptitle{WASP-89_2013-06-15T07_38_42.423_6297}
+\figsetplot{WASP-89_2013-06-15T07_38_42.423_6297.pdf}
+\figsetgrpnote{Star: WASP-89, Observation Date/Time: 2013-06-15 07:38:42. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetgrpstart
+\figsetgrpnum{17.67}
+\figsetgrptitle{WASP-89_2013-06-15T08_09_45.993_6551}
+\figsetplot{WASP-89_2013-06-15T08_09_45.993_6551.pdf}
+\figsetgrpnote{Star: WASP-89, Observation Date/Time: 2013-06-15 08:09:45. Top panel: reduced spectrum. Bottom panel: subsection of the corresponding CCD image for this wavelength range.}
+\figsetgrpend
+\figsetend
 
 \bibliographystyle{aasjournalv7}
 \bibliography{references.bib}
