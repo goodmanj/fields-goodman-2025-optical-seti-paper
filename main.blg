@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2025)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: aasjournalv7.bst
+Database file #1: references.bib
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Warning--can't use both author and editor fields in Peach2006
+You've used 58 entries,
+            3426 wiz_defined-function locations,
+            1195 strings with 22591 characters,
+and the built_in function-call counts, 30643 in all, are:
+= -- 2722
+> -- 2032
+< -- 39
++ -- 674
+- -- 705
+* -- 2934
+:= -- 5275
+add.period$ -- 60
+call.type$ -- 58
+change.case$ -- 300
+chr.to.int$ -- 62
+cite$ -- 59
+duplicate$ -- 1167
+empty$ -- 1824
+format.name$ -- 863
+if$ -- 6215
+int.to.chr$ -- 3
+int.to.str$ -- 0
+missing$ -- 106
+newline$ -- 242
+num.names$ -- 236
+pop$ -- 287
+preamble$ -- 1
+purify$ -- 298
+quote$ -- 0
+skip$ -- 1059
+stack$ -- 0
+substring$ -- 1527
+swap$ -- 276
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 577
+warning$ -- 1
+while$ -- 222
+width$ -- 0
+write$ -- 815
+(There was 1 warning)

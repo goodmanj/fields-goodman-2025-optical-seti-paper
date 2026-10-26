@@ -1,0 +1,242 @@
+\begin{thebibliography}{}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\href{#1}{#1}}
+\providecommand{\dodoi}[1]{doi:~\href{http://doi.org/#1}{\nolinkurl{#1}}}
+\providecommand{\doeprint}[1]{\href{http://ascl.net/#1}{\nolinkurl{http://ascl.net/#1}}}
+\providecommand{\doarXiv}[1]{\href{https://arxiv.org/abs/#1}{\nolinkurl{https://arxiv.org/abs/#1}}}
+
+% type= article
+\bibitem[{P.~R. Backus(1998)Backus}]{BACKUS1998651}
+Backus, P.~R. 1998, \bibinfo{title}{The Phoenix search results at Parkes,} Acta Astronautica, 42, 651, \dodoi{https://doi.org/10.1016/S0094-5765(98)00020-4}
+
+% type= article
+\bibitem[{R. Bhathal(2000)Bhathal}]{caseforopticalseti}
+Bhathal, R. 2000, \bibinfo{title}{The case for optical SETI,} Astronomy \& Geophysics, 41, 1.25, \dodoi{https://doi.org/10.1046/j.1468-4004.2000.00025.x}
+
+% type= article
+\bibitem[{J.~J. Bible {et~al.}(2013)Bible, Johansson, Hughes, \& Lubin}]{Bible_Johansson_Hughes_Lubin_2013}
+Bible, J.~J., Johansson, I., Hughes, G.~B., \& Lubin, P.~M. 2013, \bibinfo{title}{Relativistic propulsion using directed energy,} Nanophotonics and Macrophotonics for Space Environments VII, \dodoi{10.1117/12.2035346}
+
+% type= article
+\bibitem[{D.~B. Calia {et~al.}(2014)Calia, Hackenberg, Holzlöhner, Lewis, \& Pfrommer}]{HARPS_guidestars}
+Calia, D.~B., Hackenberg, W., Holzlöhner, R., Lewis, S., \& Pfrommer, T. 2014, \bibinfo{title}{The four-laser guide star facility: Design considerations and system implementation,} Advanced Optical Technologies, 3, 345–361, \dodoi{10.1515/aot-2014-0025}
+
+% type= article
+\bibitem[{G. Cocconi \& P. Morrison(1959)Cocconi \& Morrison}]{COCCONI_MORRISON_1959}
+Cocconi, G., \& Morrison, P. 1959, \bibinfo{title}{Searching for interstellar communications,} Nature, 184, 844–846, \dodoi{10.1038/184844a0}
+
+% type= article
+\bibitem[{G.~W. {Collins} \& R.~J. {Truax}(1995){Collins} \& {Truax}}]{Rotational_Broadening}
+{Collins}, II, G.~W., \& {Truax}, R.~J. 1995, \bibinfo{title}{{Classical Rotational Broadening of Spectral Lines},} \apj, 439, 860, \dodoi{10.1086/175225}
+
+% type= inproceedings
+\bibitem[{R. {Cosentino} {et~al.}(2012){Cosentino}, {Lovis}, {Pepe}, {Collier Cameron}, {Latham}, {Molinari}, {Udry}, {Bezawada}, {Black}, {Born}, {Buchschacher}, {Charbonneau}, {Figueira}, {Fleury}, {Galli}, {Gallie}, {Gao}, {Ghedina}, {Gonzalez}, {Gonzalez}, {Guerra}, {Henry}, {Horne}, {Hughes}, {Kelly}, {Lodi}, {Lunney}, {Maire}, {Mayor}, {Micela}, {Ordway}, {Peacock}, {Phillips}, {Piotto}, {Pollacco}, {Queloz}, {Rice}, {Riverol}, {Riverol}, {San Juan}, {Sasselov}, {Segransan}, {Sozzetti}, {Sosnowska}, {Stobie}, {Szentgyorgyi}, {Vick}, \& {Weber}}]{HARPS_N}
+{Cosentino}, R., {Lovis}, C., {Pepe}, F., {et~al.} 2012, \bibinfo{title}{{Harps-N: the new planet hunter at TNG},} in Society of Photo-Optical Instrumentation Engineers (SPIE) Conference Series, Vol. 8446, Ground-based and Airborne Instrumentation for Astronomy IV, ed. I.~S. {McLean}, S.~K. {Ramsay}, \& H.~{Takami}, 84461V, \dodoi{10.1117/12.925738}
+
+% type= article
+\bibitem[{F.~J. Dyson(1960)Dyson}]{dysonspheres}
+Dyson, F.~J. 1960, \bibinfo{title}{Search for Artificial Stellar Sources of Infrared Radiation,} Science, 131, 1667, \dodoi{10.1126/science.131.3414.1667}
+
+% type= article
+\bibitem[{F. {Fouladinejad} {et~al.}(2019){Fouladinejad}, {Matkan}, {Hajeb}, \& {Brakhasi}}]{lidar_history}
+{Fouladinejad}, F., {Matkan}, A., {Hajeb}, M., \& {Brakhasi}, F. 2019, \bibinfo{title}{{History and Applications of Space-Borne Lidars},} ISPRS - International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences, 4218, 407, \dodoi{10.5194/isprs-archives-XLII-4-W18-407-2019}
+
+% type= article
+\bibitem[{R.~H. {Gray}(2021){Gray}}]{OZMAII}
+{Gray}, R.~H. 2021, \bibinfo{title}{{Ozma II: the biggest targeted search for interstellar radio signals in the twentieth century},} Journal of Astronomical History and Heritage, 24, 981
+
+% type= article
+\bibitem[{R.~H. Gray \& K. Mooley(2017)Gray \& Mooley}]{Gray_2017}
+Gray, R.~H., \& Mooley, K. 2017, \bibinfo{title}{A VLA Search for Radio Signals from M31 and M33,} The Astronomical Journal, 153, 110, \dodoi{10.3847/1538-3881/153/3/110}
+
+% type= article
+\bibitem[{J.~L. Greenstein(1952)Greenstein}]{HandKemissionlines}
+Greenstein, J.~L. 1952, \bibinfo{title}{Some emission-line G-Type Stars.,} The Astrophysical Journal, 64, \dodoi{10.1086/126425}
+
+% type= article
+\bibitem[{J. Guillochon \& A. Loeb(2015)Guillochon \& Loeb}]{Guillochon_2015}
+Guillochon, J., \& Loeb, A. 2015, \bibinfo{title}{SETI VIA LEAKAGE FROM LIGHT SAILS IN EXOPLANETARY SYSTEMS,} The Astrophysical Journal Letters, 811, L20, \dodoi{10.1088/2041-8205/811/2/L20}
+
+% type= article
+\bibitem[{R.~W. {Hanuschik}(2003{\natexlab{a}}){Hanuschik}}]{faint_airglow_database}
+{Hanuschik}, R.~W. 2003{\natexlab{a}}, \bibinfo{title}{{A flux-calibrated, high-resolution atlas of optical sky emission from UVES},} \aap, 407, 1157, \dodoi{10.1051/0004-6361:20030885}
+
+% type= article
+\bibitem[{R.~W. {Hanuschik}(2003{\natexlab{b}}){Hanuschik}}]{UVES_database}
+{Hanuschik}, R.~W. 2003{\natexlab{b}}, \bibinfo{title}{{A flux-calibrated, high-resolution atlas of optical sky emission from UVES},} \aap, 407, 1157, \dodoi{10.1051/0004-6361:20030885}
+
+% type= article
+\bibitem[{J. Haqq-Misra {et~al.}(2022)Haqq-Misra, Schwieterman, Socas-Navarro, Kopparapu, Angerhausen, Beatty, Berdyugina, Felton, Sharma, {De la Torre}, \& Apai}]{HAQQMISRA2022194}
+Haqq-Misra, J., Schwieterman, E.~W., Socas-Navarro, H., {et~al.} 2022, \bibinfo{title}{Searching for technosignatures in exoplanetary systems with current and future missions,} Acta Astronautica, 198, 194, \dodoi{https://doi.org/10.1016/j.actaastro.2022.05.040}
+
+% type= article
+\bibitem[{M. Hippke(2018)Hippke}]{Hippke_2018}
+Hippke, M. 2018, \bibinfo{title}{Interstellar communication: The colors of optical SETI,} Journal of Astrophysics and Astronomy, 39, \dodoi{10.1007/s12036-018-9566-x}
+
+% type= article
+\bibitem[{K. {Horne}(1986){Horne}}]{horne86optimal_extraction}
+{Horne}, K. 1986, \bibinfo{title}{{An optimal extraction algorithm for CCD spectroscopy.},} \pasp, 98, 609, \dodoi{10.1086/131801}
+
+% type= article
+\bibitem[{A.~W. Howard {et~al.}(2004)Howard, Horowitz, Wilkinson, Coldwell, Groth, Jarosik, Latham, Stefanik, Alexander J.~Willman, Wolff, \& Zajac}]{Howard_2004}
+Howard, A.~W., Horowitz, P., Wilkinson, D.~T., {et~al.} 2004, \bibinfo{title}{Search for Nanosecond Optical Pulses from Nearby Solar-Type Stars,} The Astrophysical Journal, 613, 1270, \dodoi{10.1086/423300}
+
+% type= article
+\bibitem[{A.~B.~W. Kennedy \& H.~R. Sankey(1898)Kennedy \& Sankey}]{sankey1898}
+Kennedy, A. B.~W., \& Sankey, H.~R. 1898, \bibinfo{title}{The Thermal Efficiency Of Steam Engines,} Minutes of the Proceedings of the Institution of Civil Engineers, 134, 278–312., \dodoi{doi:10.1680/imotp.1898.19100}
+
+% type= inproceedings
+\bibitem[{S.~A. Kingsley(1993)Kingsley}]{Kingsley}
+Kingsley, S.~A. 1993, \bibinfo{title}{{The search for extraterrestrial intelligence (SETI) in the optical spectrum: a review},} in The Search for Extraterrestrial Intelligence (SETI) in the Optical Spectrum, ed. S.~A. Kingsley, Vol. 1867, International Society for Optics and Photonics (SPIE), 75 -- 113, \dodoi{10.1117/12.150129}
+
+% type= article
+\bibitem[{D. Kipping \& R. Gray(2022)Kipping \& Gray}]{Wow!Signal}
+Kipping, D., \& Gray, R. 2022, \bibinfo{title}{Could the ‘Wow’ signal have originated from a stochastic repeating beacon?} Monthly Notices of the Royal Astronomical Society, 515, 1122, \dodoi{10.1093/mnras/stac1807}
+
+% type= article
+\bibitem[{M. Lampton {et~al.}(1992)Lampton, Bowyer, Werthimer, Donnelly, \& Herrick}]{LAMPTON1992189}
+Lampton, M., Bowyer, S., Werthimer, D., Donnelly, C., \& Herrick, W. 1992, \bibinfo{title}{The SERENDIP piggyback SETI project,} Acta Astronautica, 26, 189, \dodoi{https://doi.org/10.1016/0094-5765(92)90094-Y}
+
+% type= inproceedings
+\bibitem[{M.~L. Lander {et~al.}(1997)Lander, Maxwell, Reilly, \& Hull}]{Lander1997ContinuouswaveCD}
+Lander, M.~L., Maxwell, K.~J., Reilly, J.~P., \& Hull, R.~J. 1997, \bibinfo{title}{Continuous-wave carbon dioxide laser system producing output power up to 135 kW,} in International Symposium on High Power Laser Systems and Applications.
+\newblock \url{https://api.semanticscholar.org/CorpusID:110426974}
+
+% type= article
+\bibitem[{R.~S. {Levenhagen} \& N.~V. {Leister}(2006){Levenhagen} \& {Leister}}]{LBV2}
+{Levenhagen}, R.~S., \& {Leister}, N.~V. 2006, \bibinfo{title}{{Spectroscopic analysis of southern B and Be stars},} \mnras, 371, 252, \dodoi{10.1111/j.1365-2966.2006.10655.x}
+
+% type= article
+\bibitem[{D. Lipman {et~al.}(2019)Lipman, Isaacson, Siemion, Lebofsky, Price, MacMahon, Croft, DeBoer, Hickish, Werthimer, Hellbourg, Enriquez, \& Gizani}]{Lipman_2019}
+Lipman, D., Isaacson, H., Siemion, A. P.~V., {et~al.} 2019, \bibinfo{title}{The Breakthrough Listen Search for Intelligent Life: Searching Boyajian's Star for Laser Line Emission,} Publications of the Astronomical Society of the Pacific, 131, 034202, \dodoi{10.1088/1538-3873/aafe86}
+
+% type= article
+\bibitem[{G. Livadiotis(2018)Livadiotis}]{Livadiotis_2018}
+Livadiotis, G. 2018, \bibinfo{title}{Thermal Doppler Broadening of Spectral Emissions in Space and Astrophysical Plasmas,} The Astrophysical Journal Supplement Series, 239, 25, \dodoi{10.3847/1538-4365/aae835}
+
+% type= article
+\bibitem[{P.~X. Ma {et~al.}(2023)Ma, Ng, Rizk, Croft, Siemion, Brzycki, Czech, Drew, Gajjar, Hoang, \& et~al.}]{PeterMa}
+Ma, P.~X., Ng, C., Rizk, L., {et~al.} 2023, \bibinfo{title}{A deep-learning search for technosignatures from 820 nearby stars,} Nature Astronomy, \dodoi{10.1038/s41550-022-01872-z}
+
+% type= article
+\bibitem[{J. Maire {et~al.}(2019)Maire, Wright, Barrett, Dexter, Dorval, Duenas, Drake, Hultgren, Isaacson, Marcy, Meyer, Ramos, Shirman, Siemion, Stone, Tallis, Tellis, Treffers, \& Werthimer}]{Maire_2019}
+Maire, J., Wright, S.~A., Barrett, C.~T., {et~al.} 2019, \bibinfo{title}{Search for Nanosecond Near-infrared Transients around 1280 Celestial Objects,} The Astronomical Journal, 158, 203, \dodoi{10.3847/1538-3881/ab44d3}
+
+% type= article
+\bibitem[{G.~W. Marcy(2021{\natexlab{a}})Marcy}]{Marcy_2021}
+Marcy, G.~W. 2021{\natexlab{a}}, \bibinfo{title}{A search for optical laser emission from Proxima Centauri,} Monthly Notices of the Royal Astronomical Society, 505, 3537, \dodoi{10.1093/mnras/stab1440}
+
+% type= article
+\bibitem[{G.~W. Marcy(2021{\natexlab{b}})Marcy}]{ProximaCentauri}
+Marcy, G.~W. 2021{\natexlab{b}}, \bibinfo{title}{{A search for optical laser emission from Proxima Centauri},} Monthly Notices of the Royal Astronomical Society, 505, 3537, \dodoi{10.1093/mnras/stab1440}
+
+% type= article
+\bibitem[{M. {Mayor} {et~al.}(2003){Mayor}, {Pepe}, {Queloz}, {Bouchy}, {Rupprecht}, {Lo Curto}, {Avila}, {Benz}, {Bertaux}, {Bonfils}, {Dall}, {Dekker}, {Delabre}, {Eckert}, {Fleury}, {Gilliotte}, {Gojak}, {Guzman}, {Kohler}, {Lizon}, {Longinotti}, {Lovis}, {Megevand}, {Pasquini}, {Reyes}, {Sivan}, {Sosnowska}, {Soto}, {Udry}, {van Kesteren}, {Weber}, \& {Weilenmann}}]{HARPS_specs}
+{Mayor}, M., {Pepe}, F., {Queloz}, D., {et~al.} 2003, \bibinfo{title}{{Setting New Standards with HARPS},} The Messenger, 114, 20
+
+% type= manual
+\bibitem[{A. Modigliani {et~al.}(2026)Modigliani, Sosnowska, \& Lovis}]{UserManual}
+Modigliani, A., Sosnowska, D., \& Lovis, C. 2026, HARPS Pipeline User Manual, 3rd edn., European Southern Observatory.
+\newblock \url{https://ftp.eso.org/pub/dfs/pipelines/instruments/harps/harps-pipeline-manual-3.6.0.pdf}
+
+% type= article
+\bibitem[{J.~C. {Morales} {et~al.}(2022){Morales}, {Ribas}, {Gim{\'e}nez}, \& {Baroch}}]{eclipsing_binaries}
+{Morales}, J.~C., {Ribas}, I., {Gim{\'e}nez}, {\'A}., \& {Baroch}, D. 2022, \bibinfo{title}{{Fundamental Properties of Late-Type Stars in Eclipsing Binaries},} Galaxies, 10, 98, \dodoi{10.3390/galaxies10050098}
+
+% type= misc
+\bibitem[{ {NASA~Technosignatures~Workshop}(2019){NASA~Technosignatures~Workshop}}]{2019nasatechnosignatures}
+{NASA~Technosignatures~Workshop}. 2019, NASA and the Search for Technosignatures: A Report from the NASA Technosignatures Workshop, \doarXiv{1812.08681}
+
+% type= article
+\bibitem[{P. {Parihar} {et~al.}(2009){Parihar}, {Messina}, {Bama}, {Medhi}, {Muneer}, {Velu}, \& {Ahmad}}]{CD332771EmissionLinesEclipsingBinaries}
+{Parihar}, P., {Messina}, S., {Bama}, P., {et~al.} 2009, \bibinfo{title}{{Spectroscopic survey of ASAS eclipsing variables: search for chromospherically active eclipsing binary stars - I},} \mnras, 395, 593, \dodoi{10.1111/j.1365-2966.2009.14422.x}
+
+% type= article
+\bibitem[{K.~L.~G. {Parkin}(2018){Parkin}}]{STARSHOT}
+{Parkin}, K. L.~G. 2018, \bibinfo{title}{{The Breakthrough Starshot system model},} Acta Astronautica, 152, 370, \dodoi{10.1016/j.actaastro.2018.08.035}
+
+% type= inbook
+\bibitem[{G. Peach(2006)Peach}]{Peach2006}
+Peach, G. 2006, Collisional Broadening of Spectral Lines, ed. G.~Drake (New York, NY: Springer New York), 875--888, \dodoi{10.1007/978-0-387-26308-3_59}
+
+% type= article
+\bibitem[{ {Pepe, F.} {et~al.}(2011){Pepe, F.}, {Lovis, C.}, {Ségransan, D.}, {Benz, W.}, {Bouchy, F.}, {Dumusque, X.}, {Mayor, M.}, {Queloz, D.}, {Santos, N. C.}, \& {Udry, S.}}]{exoplanets}
+{Pepe, F.}, {Lovis, C.}, {Ségransan, D.}, {et~al.} 2011, \bibinfo{title}{The HARPS search for Earth-like planets in the habitable zone - I. Very low-mass planets around HD 20794, HD 85512, and HD 192310⋆⋆⋆,} Astronomy and Astrophysics, 534, A58, \dodoi{10.1051/0004-6361/201117055}
+
+% type= article
+\bibitem[{D.~C. Price {et~al.}(2020)Price, Enriquez, Brzycki, Croft, Czech, DeBoer, DeMarines, Foster, Gajjar, Gizani, Hellbourg, Isaacson, Lacki, Lebofsky, MacMahon, Pater, Siemion, Werthimer, Green, Kaczmarek, Maddalena, Mader, Drew, \& Worden}]{Price_2020}
+Price, D.~C., Enriquez, J.~E., Brzycki, B., {et~al.} 2020, \bibinfo{title}{The Breakthrough Listen Search for Intelligent Life: Observations of 1327 Nearby Stars Over 1.10–3.45 GHz,} The Astronomical Journal, 159, 86, \dodoi{10.3847/1538-3881/ab65f1}
+
+% type= article
+\bibitem[{A. Reines \& G. Marcy(2002)Reines \& Marcy}]{Reines_2002}
+Reines, A., \& Marcy, G. 2002, \bibinfo{title}{Optical Search for Extraterrestrial Intelligence: A Spectroscopic Search for Laser Emission from Nearby Stars,} Publications of the Astronomical Society of the Pacific, 114, 416–426, \dodoi{10.1086/342496}
+
+% type= article
+\bibitem[{B.~W. {Ritchie} {et~al.}(2009){Ritchie}, {Clark}, {Negueruela}, \& {Najarro}}]{LBV}
+{Ritchie}, B.~W., {Clark}, J.~S., {Negueruela}, I., \& {Najarro}, F. 2009, \bibinfo{title}{{Spectroscopic monitoring of the luminous blue variable Westerlund1-243 from 2002 to 2009},} \aap, 507, 1597, \dodoi{10.1051/0004-6361/200912986}
+
+% type= article
+\bibitem[{E.~W. Schwieterman {et~al.}(2018)Schwieterman, Kiang, Parenteau, Harman, DasSarma, Fisher, Arney, Hartnett, Reinhard, Olson, Meadows, Cockell, Walker, Grenfell, Hegde, Rugheimer, Hu, \& Lyons}]{exoplanetbiosignatures}
+Schwieterman, E.~W., Kiang, N.~Y., Parenteau, M.~N., {et~al.} 2018, \bibinfo{title}{Exoplanet Biosignatures: A Review of Remotely Detectable Signs of Life,} Astrobiology, 18, 663, \dodoi{10.1089/ast.2017.1729}
+
+% type= article
+\bibitem[{R.~H. Stanton(2019)Stanton}]{STANTON201992}
+Stanton, R.~H. 2019, \bibinfo{title}{Exploring optical SETI's middle ground,} Acta Astronautica, 156, 92, \dodoi{https://doi.org/10.1016/j.actaastro.2018.05.061}
+
+% type= article
+\bibitem[{A. Szafarczyk \& C. Toś(2023)Szafarczyk \& Toś}]{bathymetric_lidar}
+Szafarczyk, A., \& Toś, C. 2023, \bibinfo{title}{The Use of Green Laser in LiDAR Bathymetry: State of the Art and Recent Advancements,} Sensors, 23, \dodoi{10.3390/s23010292}
+
+% type= article
+\bibitem[{N.~K. Tellis \& G.~W. Marcy(2017)Tellis \& Marcy}]{Tellis_2017}
+Tellis, N.~K., \& Marcy, G.~W. 2017, \bibinfo{title}{A Search for Laser Emission with Megawatt Thresholds from 5600 FGKM Stars,} The Astronomical Journal, 153, 251, \dodoi{10.3847/1538-3881/aa6d12}
+
+% type= inproceedings
+\bibitem[{L.~A. {Thompson}(1986){Thompson}}]{LaserGuideStarAdaptiveOptics}
+{Thompson}, L.~A. 1986, \bibinfo{title}{{Laser Guide Stars for Adaptive Optical Systems},} in Bulletin of the American Astronomical Society, Vol.~18, 935
+
+% type= article
+\bibitem[{L.~A. Thompson \& R.~M. Castle(1992)Thompson \& Castle}]{RaleighScattering}
+Thompson, L.~A., \& Castle, R.~M. 1992, \bibinfo{title}{Experimental demonstration of a Rayleigh-scattered laser guide star at 351 nm,} Opt. Lett., 17, 1485, \dodoi{10.1364/OL.17.001485}
+
+% type= article
+\bibitem[{C. Tilgner \& I. Heinrichsen(1998)Tilgner \& Heinrichsen}]{TILGNER1998607}
+Tilgner, C., \& Heinrichsen, I. 1998, \bibinfo{title}{A program to search for dyson spheres with the infrared space observatory,} Acta Astronautica, 42, 607, \dodoi{https://doi.org/10.1016/S0094-5765(98)00015-0}
+
+% type= article
+\bibitem[{C.~H. Townes \& R.~N. Schwartz(1961)Townes \& Schwartz}]{TOWNES_SCHWARTZ_1961}
+Townes, C.~H., \& Schwartz, R.~N. 1961, \bibinfo{title}{Interstellar and interplanetary communication by optical masers,} Nature, 192, 348–349, \dodoi{10.1038/192348c0}
+
+% type= article
+\bibitem[{T. Trifonov {et~al.}(2020)Trifonov, {Tal-Or, Lev}, {Zechmeister, Mathias}, {Kaminski, Adrian}, {Zucker, Shay}, \& {Mazeh, Tsevi}}]{trifonov_2020}
+Trifonov, T., {Tal-Or, Lev}, {Zechmeister, Mathias}, {et~al.} 2020, \bibinfo{title}{Public HARPS radial velocity database corrected for systematic errors,} A\&A, 636, A74, \dodoi{10.1051/0004-6361/201936686}
+
+% type= article
+\bibitem[{P. Virtanen {et~al.}(2020)Virtanen, Gommers, Oliphant, Haberland, Reddy, Cournapeau, Burovski, Peterson, Weckesser, Bright, {van der Walt}, Brett, Wilson, Millman, Mayorov, Nelson, Jones, Kern, Larson, Carey, Polat, Feng, Moore, {VanderPlas}, Laxalde, Perktold, Cimrman, Henriksen, Quintero, Harris, Archibald, Ribeiro, Pedregosa, {van Mulbregt}, \& {SciPy 1.0 Contributors}}]{2020SciPy-NMeth}
+Virtanen, P., Gommers, R., Oliphant, T.~E., {et~al.} 2020, \bibinfo{title}{{{SciPy} 1.0: Fundamental Algorithms for Scientific Computing in Python},} Nature Methods, 17, 261, \dodoi{10.1038/s41592-019-0686-2}
+
+% type= article
+\bibitem[{D.~P. Whitmire \& D.~P. Wright(1980)Whitmire \& Wright}]{WHITMIRE1980149}
+Whitmire, D.~P., \& Wright, D.~P. 1980, \bibinfo{title}{Nuclear waste spectrum as evidence of technological extraterrestrial civilizations,} Icarus, 42, 149, \dodoi{https://doi.org/10.1016/0019-1035(80)90253-5}
+
+% type= article
+\bibitem[{J. Wojtanowski {et~al.}(2014)Wojtanowski, Zygmunt, Kaszczuk, Mierczyk, \& Muzal}]{vehicle_lidar}
+Wojtanowski, J., Zygmunt, M., Kaszczuk, M., Mierczyk, Z., \& Muzal, M. 2014, \bibinfo{title}{Comparison of 905 nm and 1550 nm semiconductor laser rangefinders’ performance deterioration due to adverse environmental conditions,} Opto-Electronics Review, 22, \dodoi{10.2478/s11772-014-0190-2}
+
+% type= article
+\bibitem[{J.~T. Wright {et~al.}(2018)Wright, Kanodia, \& Lubar}]{Wright_2018}
+Wright, J.~T., Kanodia, S., \& Lubar, E. 2018, \bibinfo{title}{How Much SETI Has Been Done? Finding Needles in the n-dimensional Cosmic Haystack,} The Astronomical Journal, 156, 260, \dodoi{10.3847/1538-3881/aae099}
+
+% type= inproceedings
+\bibitem[{S.~A. {Wright} {et~al.}(2001){Wright}, {Drake}, {Stone}, {Treffers}, \& {Werthimer}}]{Shelley_Wright}
+{Wright}, S.~A., {Drake}, F., {Stone}, R.~P., {Treffers}, D., \& {Werthimer}, D. 2001, \bibinfo{title}{{Improved optical SETI detector},} in Society of Photo-Optical Instrumentation Engineers (SPIE) Conference Series, Vol. 4273, The Search for Extraterrestrial Intelligence (SETI) in the Optical Spectrum III, ed. S.~A. {Kingsley} \& R.~{Bhathal}, 173--177, \dodoi{10.1117/12.435376}
+
+% type= article
+\bibitem[{A. Zuckerman {et~al.}(2023)Zuckerman, Ko, Isaacson, Croft, Price, Lebofsky, \& Siemion}]{Zuckerman_2023}
+Zuckerman, A., Ko, Z., Isaacson, H., {et~al.} 2023, \bibinfo{title}{The Breakthrough Listen Search for Intelligent Life: A Laser Search Pipeline for the Automated Planet Finder,} The Astronomical Journal, 165, 114, \dodoi{10.3847/1538-3881/acb342}
+
+% type= article
+\bibitem[{M.~M. Ćirković(2018)Ćirković}]{CIRKOVIC2018289}
+Ćirković, M.~M. 2018, \bibinfo{title}{Astroengineering, Dysonian SETI, and naturalism: A new Catch-22,} Acta Astronautica, 152, 289, \dodoi{https://doi.org/10.1016/j.actaastro.2018.07.051}
+
+\end{thebibliography}
