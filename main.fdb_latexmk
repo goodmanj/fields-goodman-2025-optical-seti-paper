@@ -1,21 +1,21 @@
 # Fdb version 4
-["bibtex main"] 1793021893.0929 "main.aux" "main.bbl" "main" 1793021895.19941 0
+["bibtex main"] 1793022126.88125 "main.aux" "main.bbl" "main" 1793022129.1011 0
   "./aasjournalv7.bst" 1793001499 38788 af6489f4b275f4b9c2f0b12c5ef4a113 ""
-  "./references.bib" 1793001499 77439 531890fdbf976b95076f78be4f3b36be ""
-  "main.aux" 1793021894 19424 02e0673a9b9d90a3c8d4b1bdd957b3b8 "pdflatex"
+  "./references.bib" 1793022123 78530 531890fdbf976b95076f78be4f3b36be ""
+  "main.aux" 1793022128 19424 02e0673a9b9d90a3c8d4b1bdd957b3b8 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1793021893.43196 "c:/Users/goodm/OneDrive/Documents/fields-goodman-2025-optical-seti-paper/main.tex" "main.pdf" "main" 1793021895.19988 0
+["pdflatex"] 1793022127.21116 "c:/Users/goodm/OneDrive/Documents/fields-goodman-2025-optical-seti-paper/main.tex" "main.pdf" "main" 1793022129.10159 0
   "Cosmic_ray_multiorder_example.pdf" 1793001499 80020 9dd5c63ecf3e398ebc7adf90ad15ab78 ""
-  "GJ1214_2009-08-23T23_07_36.179_6004.pdf" 1793018915 51238 7ce749d2e5add01e1478c936d9984081 ""
-  "HD34642Version3pdf.pdf" 1793001499 92010 ad9b378bca5d4312e7e62bfa8cb183d0 ""
+  "GJ1214_2009-08-23T23_07_36.179_6004.pdf" 1793022123 51238 7ce749d2e5add01e1478c936d9984081 ""
+  "HD34642Version3pdf.pdf" 1793022123 92010 ad9b378bca5d4312e7e62bfa8cb183d0 ""
   "HIP87607figureforpaper2.pdf" 1793001499 57812 604f151735488fcd44a2c2f246a11db5 ""
   "aastex701.cls" 1793001499 387395 162019395089b1576c53f45c5fcd0328 ""
   "airglowexample.pdf" 1793001499 31924 1846ab5ba519392080729af2b5d93697 ""
   "bleedthrough.pdf" 1793001499 32337 9bddc86706ae4cffece01152675b6358 ""
-  "c:/Users/goodm/OneDrive/Documents/fields-goodman-2025-optical-seti-paper/main.tex" 1793019816 108725 7aee311f97928e8560435d568680bbd1 ""
+  "c:/Users/goodm/OneDrive/Documents/fields-goodman-2025-optical-seti-paper/main.tex" 1793022123 109843 7aee311f97928e8560435d568680bbd1 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1753357025 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1753357581 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/adobe/helvetic/phvr.tfm" 1753357765 2504 ba6584b616b92101c768b6c4ffb32dd0 ""
@@ -145,11 +145,11 @@
   "eruptivevariablestar.pdf" 1793001499 97261 a751d9a1115eccdef72d3becc01be309 ""
   "etalonfringesexampleforpaper.pdf" 1793001499 31302 7df9cd8c4359e3867448c3b6967f41a0 ""
   "harps_database_stellar_distances_and_temperatures.pdf" 1793001499 151181 b6e3d01b5fb5b26a5d40d883cc0367fd ""
-  "injection_recovery_gridded.pdf" 1793001499 98535 2826054793a0f55c36a5508c6a62f023 ""
-  "main.aux" 1793021894 19424 02e0673a9b9d90a3c8d4b1bdd957b3b8 "pdflatex"
-  "main.bbl" 1793021893 20357 12ba94f8e8cf5e16d4b88c5622e50f9d "bibtex main"
-  "main.out" 1793021894 7332 0a91e5ddfb19fb19c037bc0dc2f70392 "pdflatex"
-  "main.tex" 1793019816 108725 7aee311f97928e8560435d568680bbd1 ""
+  "injection_recovery_gridded.pdf" 1793022123 98535 2826054793a0f55c36a5508c6a62f023 ""
+  "main.aux" 1793022128 19424 02e0673a9b9d90a3c8d4b1bdd957b3b8 "pdflatex"
+  "main.bbl" 1793022127 20357 12ba94f8e8cf5e16d4b88c5622e50f9d "bibtex main"
+  "main.out" 1793022128 7332 0a91e5ddfb19fb19c037bc0dc2f70392 "pdflatex"
+  "main.tex" 1793022123 109843 7aee311f97928e8560435d568680bbd1 ""
   "sankey.pdf" 1793001499 135068 a7b53b8b20735bb7e3c29757d84a9fae ""
   "sankey_repeater.pdf" 1793001499 140571 fd137d948118adf6ca6711590d26ee9d ""
   "seti_candidate_GJ317.pdf" 1793001499 56147 7e9b233b54a2d8d6581fc36b3d16453d ""
